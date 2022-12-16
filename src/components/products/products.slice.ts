@@ -24,12 +24,26 @@ const productsSlice = createSlice({
       state.push(action.payload);
     },
     sortProducts: (state, action: PayloadAction<string>) => {
-      if (action.payload === 'big ratings first') {
-        state.sort((a, b) => b.rating - a.rating);
-      } else if (action.payload === 'low ratings first') {
-        state.sort((a, b) => a.rating - b.rating);
-      }
-      
+      switch(action.payload) {
+        case 'big ratings first':
+          state.sort((a, b) => b.rating - a.rating);
+          break;
+        case 'low ratings first':
+          state.sort((a, b) => a.rating - b.rating);
+          break;
+        case 'big price first':
+          state.sort((a, b) => b.price - a.price);
+          break;
+        case 'low price first':
+          state.sort((a, b) => a.price - b.price);
+          break;
+        case 'big discount first':
+          state.sort((a, b) => b.discountPercentage - a.discountPercentage);
+          break;
+        case 'low discount first':
+          state.sort((a, b) => a.discountPercentage - b.discountPercentage);
+          break;
+      }      
     }
   }
 })
