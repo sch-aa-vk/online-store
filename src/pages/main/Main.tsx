@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductsList from '../../components/products/ProductsList';
-import AscendingSort from '../../functions/ascendingSort/AscendingSort';
+import AscendingSort from '../../functions/ascendingSort/Sort';
 import Header from '../../components/header/Header';
 
 import './main.css';

@@ -1,6 +1,7 @@
 import { useAppDispatch } from '../store/store.hooks';
 import { sortProducts } from '../../components/products/products.slice';
-import './AscendingSort.css';
+
+import './sort.css';
 
 const AscendingSort: React.FC = () => {
     const dispatch = useAppDispatch();
