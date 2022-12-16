@@ -1,22 +1,18 @@
 import React from 'react';
-import './App.css';
-import ProductsList from './products/ProductsList';
-import Cart from './cart/cart';
-import AscendingSort from './ascendingSort/AscendingSort';
+import { Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+
+import Home from './pages/main/Main';
+import Cart from './pages/cart/Cart';
+import store from './functions/store/store';
 
 function App() {
   return (
     <Provider store={store}>
-      <div className="app">
-        <header className='header'>
-          <Cart/>
-        </header>
-        <AscendingSort/>
-        <ProductsList/>
-        
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />}></Route>
+      </Routes>
     </Provider>
   );
 }

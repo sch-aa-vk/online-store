@@ -1,5 +1,5 @@
-import { useAppDispatch } from '../store.hooks';
-import { sortProducts } from '../products/products.slice';
+import { useAppDispatch } from '../store/store.hooks';
+import { sortProducts } from '../../components/products/products.slice';
 import './AscendingSort.css';
 
 const AscendingSort: React.FC = () => {

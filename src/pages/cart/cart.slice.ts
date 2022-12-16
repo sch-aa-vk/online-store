@@ -1,6 +1,6 @@
-import { IProduct } from '../products/products.slice';
+import { IProduct } from '../../components/products/products.slice';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { RootState } from '../../functions/store/store';
 
 interface CartProduct extends IProduct {
   amount: number;
