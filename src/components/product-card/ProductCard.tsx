@@ -1,8 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { IProduct } from '../products/products.slice';
 import { useAppDispatch, useAppSelector } from '../../functions/store/store.hooks';
 import { addToCart, removeFromCart, getCartProducts } from '../../pages/cart/cart.slice';
 
+import './product-card.css';
 
 const ProductCard = (product: IProduct) => {
 
@@ -13,9 +15,11 @@ const ProductCard = (product: IProduct) => {
   const handleRemoveFromCart = (productId: number) => dispatch(removeFromCart(productId));
   
   return (
-    <div className='products__item' key={product.id}>
+    <div className='products__item'>
       <div className='products__item-discount'>-{product.discountPercentage}%</div>
-      <div className='products__item-pic' style={{backgroundImage: `url(${product.thumbnail})`}}></div>
+      <Link to={`/product-${product.id}`}>
+        <div className='products__item-pic' style={{backgroundImage: `url(${product.thumbnail})`}}></div>
+      </Link>
       <div>{product.brand} {product.title}</div>
       <div>${product.price}</div>
       <div>{product.rating.toFixed(1)}</div>
