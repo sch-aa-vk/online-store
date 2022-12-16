@@ -22,11 +22,19 @@ const productsSlice = createSlice({
   reducers: {
     addProduct: (state, action: PayloadAction<IProduct>) => {
       state.push(action.payload);
+    },
+    sortProducts: (state, action: PayloadAction<string>) => {
+      if (action.payload === 'big ratings first') {
+        state.sort((a, b) => b.rating - a.rating);
+      } else if (action.payload === 'low ratings first') {
+        state.sort((a, b) => a.rating - b.rating);
+      }
+      
     }
   }
 })
 
-export const { addProduct } = productsSlice.actions;
+export const { addProduct, sortProducts } = productsSlice.actions;
 
 export const getProductsSelector = (state: RootState) => state.products;
 
