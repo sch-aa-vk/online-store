@@ -19,9 +19,9 @@ const ProductCard = (product: IProduct) => {
       <div>${product.price}</div>
       <div>{product.rating.toFixed(1)}</div>
       <div className='products__item-btn-wrapper'>
-        <button className='products__item-btn' onClick={() => addToCartHandler(product)}>Add to card</button>
+        <button className='products__item-btn' onClick={() => addToCartHandler(product)}>Add to card {product.amount}</button>
         <button className='products__item-btn' onClick={() => addToCartHandler(product)}>Buy now</button>
-        <button onClick={() => handleRemoveFromCart(product.id)}>Remove from cart</button>
+        {product.amount ? (<button onClick={() => handleRemoveFromCart(product.id)}>Remove from cart</button>) : ('')}
       </div>
     </div>
   )

@@ -18,7 +18,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/1/3.jpg",
     "https://i.dummyjson.com/data/products/1/4.jpg",
     "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
   },
   {
     id: 2,
@@ -36,7 +37,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/2/2.jpg",
     "https://i.dummyjson.com/data/products/2/3.jpg",
     "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
   },
   {
     id: 3,
@@ -51,7 +53,8 @@ export const initialState: IProduct[] = [
     thumbnail: "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
     images: [
     "https://i.dummyjson.com/data/products/3/1.jpg"
-    ]
+    ],
+    amount: 0,
   },
   {
     id: 4,
@@ -70,7 +73,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/4/3.jpg",
     "https://i.dummyjson.com/data/products/4/4.jpg",
     "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
   },
   {
     id: 5,
@@ -87,7 +91,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/5/1.jpg",
     "https://i.dummyjson.com/data/products/5/2.jpg",
     "https://i.dummyjson.com/data/products/5/3.jpg"
-    ]
+    ],
+    amount: 0,
   },
   {
     id: 6,
@@ -105,7 +110,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/6/2.jpg",
     "https://i.dummyjson.com/data/products/6/3.png",
     "https://i.dummyjson.com/data/products/6/4.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 7,
@@ -123,7 +129,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/7/2.jpg",
     "https://i.dummyjson.com/data/products/7/3.jpg",
     "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 8,
@@ -142,7 +149,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/8/3.jpg",
     "https://i.dummyjson.com/data/products/8/4.jpg",
     "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 9,
@@ -161,7 +169,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/9/3.png",
     "https://i.dummyjson.com/data/products/9/4.jpg",
     "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 10,
@@ -179,7 +188,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/10/2.jpg",
     "https://i.dummyjson.com/data/products/10/3.jpg",
     "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 11,
@@ -197,7 +207,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/11/2.jpg",
     "https://i.dummyjson.com/data/products/11/3.jpg",
     "https://i.dummyjson.com/data/products/11/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 12,
@@ -216,7 +227,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/12/3.png",
     "https://i.dummyjson.com/data/products/12/4.jpg",
     "https://i.dummyjson.com/data/products/12/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 13,
@@ -235,7 +247,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/13/3.jpg",
     "https://i.dummyjson.com/data/products/13/4.jpg",
     "https://i.dummyjson.com/data/products/13/thumbnail.webp"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 14,
@@ -253,7 +266,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/14/2.jpg",
     "https://i.dummyjson.com/data/products/14/3.jpg",
     "https://i.dummyjson.com/data/products/14/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 15,
@@ -272,7 +286,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/15/3.jpg",
     "https://i.dummyjson.com/data/products/15/4.jpg",
     "https://i.dummyjson.com/data/products/15/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 16,
@@ -291,7 +306,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/16/3.jpg",
     "https://i.dummyjson.com/data/products/16/4.jpg",
     "https://i.dummyjson.com/data/products/16/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 17,
@@ -309,7 +325,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/17/2.jpg",
     "https://i.dummyjson.com/data/products/17/3.jpg",
     "https://i.dummyjson.com/data/products/17/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 18,
@@ -328,7 +345,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/18/3.jpg",
     "https://i.dummyjson.com/data/products/18/4.jpg",
     "https://i.dummyjson.com/data/products/18/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 19,
@@ -346,7 +364,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/19/2.jpg",
     "https://i.dummyjson.com/data/products/19/3.png",
     "https://i.dummyjson.com/data/products/19/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 20,
@@ -365,7 +384,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/20/3.jpg",
     "https://i.dummyjson.com/data/products/20/4.jpg",
     "https://i.dummyjson.com/data/products/20/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 21,
@@ -382,7 +402,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/21/1.png",
     "https://i.dummyjson.com/data/products/21/2.jpg",
     "https://i.dummyjson.com/data/products/21/3.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 22,
@@ -399,7 +420,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/22/1.jpg",
     "https://i.dummyjson.com/data/products/22/2.jpg",
     "https://i.dummyjson.com/data/products/22/3.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 23,
@@ -418,7 +440,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/23/3.jpg",
     "https://i.dummyjson.com/data/products/23/4.jpg",
     "https://i.dummyjson.com/data/products/23/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 24,
@@ -437,7 +460,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/24/3.jpg",
     "https://i.dummyjson.com/data/products/24/4.jpg",
     "https://i.dummyjson.com/data/products/24/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 25,
@@ -456,7 +480,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/25/3.png",
     "https://i.dummyjson.com/data/products/25/4.jpg",
     "https://i.dummyjson.com/data/products/25/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 26,
@@ -476,7 +501,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/26/4.jpg",
     "https://i.dummyjson.com/data/products/26/5.jpg",
     "https://i.dummyjson.com/data/products/26/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 27,
@@ -495,7 +521,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/27/3.jpg",
     "https://i.dummyjson.com/data/products/27/4.jpg",
     "https://i.dummyjson.com/data/products/27/thumbnail.webp"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 28,
@@ -514,7 +541,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/28/3.png",
     "https://i.dummyjson.com/data/products/28/4.jpg",
     "https://i.dummyjson.com/data/products/28/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 29,
@@ -533,7 +561,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/29/3.webp",
     "https://i.dummyjson.com/data/products/29/4.webp",
     "https://i.dummyjson.com/data/products/29/thumbnail.webp"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 30,
@@ -551,7 +580,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/30/2.jpg",
     "https://i.dummyjson.com/data/products/30/3.jpg",
     "https://i.dummyjson.com/data/products/30/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 31,
@@ -570,7 +600,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/31/3.jpg",
     "https://i.dummyjson.com/data/products/31/4.jpg",
     "https://i.dummyjson.com/data/products/31/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 32,
@@ -588,7 +619,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/32/2.jpg",
     "https://i.dummyjson.com/data/products/32/3.jpg",
     "https://i.dummyjson.com/data/products/32/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 33,
@@ -607,7 +639,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/33/3.jpg",
     "https://i.dummyjson.com/data/products/33/4.jpg",
     "https://i.dummyjson.com/data/products/33/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 34,
@@ -626,7 +659,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/34/3.jpg",
     "https://i.dummyjson.com/data/products/34/4.jpg",
     "https://i.dummyjson.com/data/products/34/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 35,
@@ -645,7 +679,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/35/3.jpg",
     "https://i.dummyjson.com/data/products/35/4.jpg",
     "https://i.dummyjson.com/data/products/35/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 36,
@@ -664,7 +699,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/36/3.webp",
     "https://i.dummyjson.com/data/products/36/4.jpg",
     "https://i.dummyjson.com/data/products/36/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 37,
@@ -683,7 +719,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/37/3.jpg",
     "https://i.dummyjson.com/data/products/37/4.jpg",
     "https://i.dummyjson.com/data/products/37/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 38,
@@ -701,7 +738,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/38/2.jpg",
     "https://i.dummyjson.com/data/products/38/3.jpg",
     "https://i.dummyjson.com/data/products/38/4.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 39,
@@ -720,7 +758,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/39/3.jpg",
     "https://i.dummyjson.com/data/products/39/4.jpg",
     "https://i.dummyjson.com/data/products/39/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 40,
@@ -736,7 +775,8 @@ export const initialState: IProduct[] = [
     images: [
     "https://i.dummyjson.com/data/products/40/1.jpg",
     "https://i.dummyjson.com/data/products/40/2.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 41,
@@ -755,7 +795,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/41/3.jpg",
     "https://i.dummyjson.com/data/products/41/4.jpg",
     "https://i.dummyjson.com/data/products/41/thumbnail.webp"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 42,
@@ -774,7 +815,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/42/3.png",
     "https://i.dummyjson.com/data/products/42/4.jpg",
     "https://i.dummyjson.com/data/products/42/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 43,
@@ -793,7 +835,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/43/3.jpg",
     "https://i.dummyjson.com/data/products/43/4.jpg",
     "https://i.dummyjson.com/data/products/43/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 44,
@@ -812,7 +855,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/44/3.jpg",
     "https://i.dummyjson.com/data/products/44/4.jpg",
     "https://i.dummyjson.com/data/products/44/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 45,
@@ -831,7 +875,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/45/3.jpg",
     "https://i.dummyjson.com/data/products/45/4.jpg",
     "https://i.dummyjson.com/data/products/45/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 46,
@@ -850,7 +895,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/46/3.jpg",
     "https://i.dummyjson.com/data/products/46/4.jpg",
     "https://i.dummyjson.com/data/products/46/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 47,
@@ -868,7 +914,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/47/2.jpg",
     "https://i.dummyjson.com/data/products/47/3.jpg",
     "https://i.dummyjson.com/data/products/47/thumbnail.jpeg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 48,
@@ -887,7 +934,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/48/3.jpg",
     "https://i.dummyjson.com/data/products/48/4.jpg",
     "https://i.dummyjson.com/data/products/48/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 49,
@@ -905,7 +953,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/49/2.jpg",
     "https://i.dummyjson.com/data/products/49/3.webp",
     "https://i.dummyjson.com/data/products/49/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 50,
@@ -922,7 +971,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/50/1.jpeg",
     "https://i.dummyjson.com/data/products/50/2.jpg",
     "https://i.dummyjson.com/data/products/50/3.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 51,
@@ -940,7 +990,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/51/2.jpg",
     "https://i.dummyjson.com/data/products/51/3.jpg",
     "https://i.dummyjson.com/data/products/51/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 52,
@@ -959,7 +1010,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/52/3.jpg",
     "https://i.dummyjson.com/data/products/52/4.jpg",
     "https://i.dummyjson.com/data/products/52/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 53,
@@ -978,7 +1030,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/53/3.jpg",
     "https://i.dummyjson.com/data/products/53/4.jpg",
     "https://i.dummyjson.com/data/products/53/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 54,
@@ -997,7 +1050,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/54/3.jpg",
     "https://i.dummyjson.com/data/products/54/4.jpg",
     "https://i.dummyjson.com/data/products/54/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 55,
@@ -1016,7 +1070,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/55/3.jpg",
     "https://i.dummyjson.com/data/products/55/4.jpg",
     "https://i.dummyjson.com/data/products/55/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 56,
@@ -1036,7 +1091,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/56/4.jpg",
     "https://i.dummyjson.com/data/products/56/5.jpg",
     "https://i.dummyjson.com/data/products/56/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 57,
@@ -1055,7 +1111,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/57/3.jpg",
     "https://i.dummyjson.com/data/products/57/4.jpg",
     "https://i.dummyjson.com/data/products/57/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 58,
@@ -1074,7 +1131,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/58/3.jpg",
     "https://i.dummyjson.com/data/products/58/4.jpg",
     "https://i.dummyjson.com/data/products/58/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 59,
@@ -1093,7 +1151,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/59/3.jpg",
     "https://i.dummyjson.com/data/products/59/4.jpg",
     "https://i.dummyjson.com/data/products/59/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 60,
@@ -1111,7 +1170,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/60/2.jpg",
     "https://i.dummyjson.com/data/products/60/3.jpg",
     "https://i.dummyjson.com/data/products/60/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 61,
@@ -1128,7 +1188,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/61/1.jpg",
     "https://i.dummyjson.com/data/products/61/2.png",
     "https://i.dummyjson.com/data/products/61/3.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 62,
@@ -1144,7 +1205,8 @@ export const initialState: IProduct[] = [
     images: [
     "https://i.dummyjson.com/data/products/62/1.jpg",
     "https://i.dummyjson.com/data/products/62/2.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 63,
@@ -1162,7 +1224,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/63/2.jpg",
     "https://i.dummyjson.com/data/products/63/3.png",
     "https://i.dummyjson.com/data/products/63/4.jpeg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 64,
@@ -1180,7 +1243,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/64/2.webp",
     "https://i.dummyjson.com/data/products/64/3.jpg",
     "https://i.dummyjson.com/data/products/64/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 65,
@@ -1199,7 +1263,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/65/3.jpg",
     "https://i.dummyjson.com/data/products/65/4.webp",
     "https://i.dummyjson.com/data/products/65/thumbnail.webp"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 66,
@@ -1218,7 +1283,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/66/3.jpg",
     "https://i.dummyjson.com/data/products/66/4.JPG",
     "https://i.dummyjson.com/data/products/66/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 67,
@@ -1237,7 +1303,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/67/3.jpg",
     "https://i.dummyjson.com/data/products/67/4.jpg",
     "https://i.dummyjson.com/data/products/67/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 68,
@@ -1253,7 +1320,8 @@ export const initialState: IProduct[] = [
     images: [
     "https://i.dummyjson.com/data/products/68/1.jpg",
     "https://i.dummyjson.com/data/products/68/2.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 69,
@@ -1272,7 +1340,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/69/3.webp",
     "https://i.dummyjson.com/data/products/69/4.jpg",
     "https://i.dummyjson.com/data/products/69/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 70,
@@ -1289,7 +1358,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/70/1.jpg",
     "https://i.dummyjson.com/data/products/70/2.jpg",
     "https://i.dummyjson.com/data/products/70/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 71,
@@ -1307,7 +1377,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/71/2.jpg",
     "https://i.dummyjson.com/data/products/71/3.webp",
     "https://i.dummyjson.com/data/products/71/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 72,
@@ -1326,7 +1397,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/72/3.webp",
     "https://i.dummyjson.com/data/products/72/4.jpg",
     "https://i.dummyjson.com/data/products/72/thumbnail.webp"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 73,
@@ -1344,7 +1416,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/73/2.webp",
     "https://i.dummyjson.com/data/products/73/3.jpg",
     "https://i.dummyjson.com/data/products/73/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 74,
@@ -1363,7 +1436,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/74/3.jpg",
     "https://i.dummyjson.com/data/products/74/4.jpg",
     "https://i.dummyjson.com/data/products/74/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 75,
@@ -1381,7 +1455,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/75/2.jpg",
     "https://i.dummyjson.com/data/products/75/3.jpg",
     "https://i.dummyjson.com/data/products/75/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 76,
@@ -1398,7 +1473,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/76/1.jpg",
     "https://i.dummyjson.com/data/products/76/2.jpg",
     "https://i.dummyjson.com/data/products/76/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 77,
@@ -1416,7 +1492,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/77/2.jpg",
     "https://i.dummyjson.com/data/products/77/3.jpg",
     "https://i.dummyjson.com/data/products/77/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 78,
@@ -1431,7 +1508,8 @@ export const initialState: IProduct[] = [
     thumbnail: "https://i.dummyjson.com/data/products/78/thumbnail.jpg",
     images: [
     "https://i.dummyjson.com/data/products/78/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 79,
@@ -1446,7 +1524,8 @@ export const initialState: IProduct[] = [
     thumbnail: "https://i.dummyjson.com/data/products/79/thumbnail.jpg",
     images: [
     "https://i.dummyjson.com/data/products/79/1.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 80,
@@ -1465,7 +1544,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/80/3.png",
     "https://i.dummyjson.com/data/products/80/4.jpg",
     "https://i.dummyjson.com/data/products/80/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 81,
@@ -1484,7 +1564,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/81/3.jpg",
     "https://i.dummyjson.com/data/products/81/4.webp",
     "https://i.dummyjson.com/data/products/81/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 82,
@@ -1503,7 +1584,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/82/3.jpg",
     "https://i.dummyjson.com/data/products/82/4.jpg",
     "https://i.dummyjson.com/data/products/82/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 83,
@@ -1522,7 +1604,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/83/3.jpg",
     "https://i.dummyjson.com/data/products/83/4.jpg",
     "https://i.dummyjson.com/data/products/83/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 84,
@@ -1539,7 +1622,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/84/1.jpg",
     "https://i.dummyjson.com/data/products/84/2.jpg",
     "https://i.dummyjson.com/data/products/84/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 85,
@@ -1556,7 +1640,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/85/1.jpg",
     "https://i.dummyjson.com/data/products/85/2.jpg",
     "https://i.dummyjson.com/data/products/85/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 86,
@@ -1575,7 +1660,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/86/3.jpg",
     "https://i.dummyjson.com/data/products/86/4.jpg",
     "https://i.dummyjson.com/data/products/86/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 87,
@@ -1594,7 +1680,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/87/3.jpg",
     "https://i.dummyjson.com/data/products/87/4.jpg",
     "https://i.dummyjson.com/data/products/87/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 88,
@@ -1613,7 +1700,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/88/3.jpg",
     "https://i.dummyjson.com/data/products/88/4.webp",
     "https://i.dummyjson.com/data/products/88/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 89,
@@ -1632,7 +1720,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/89/3.jpg",
     "https://i.dummyjson.com/data/products/89/4.jpg",
     "https://i.dummyjson.com/data/products/89/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 90,
@@ -1651,7 +1740,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/90/3.jpg",
     "https://i.dummyjson.com/data/products/90/4.jpg",
     "https://i.dummyjson.com/data/products/90/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 91,
@@ -1670,7 +1760,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/91/3.jpg",
     "https://i.dummyjson.com/data/products/91/4.jpg",
     "https://i.dummyjson.com/data/products/91/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 92,
@@ -1688,7 +1779,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/92/2.jpg",
     "https://i.dummyjson.com/data/products/92/3.jpg",
     "https://i.dummyjson.com/data/products/92/4.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 93,
@@ -1707,7 +1799,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/93/3.jpg",
     "https://i.dummyjson.com/data/products/93/4.jpg",
     "https://i.dummyjson.com/data/products/93/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 94,
@@ -1725,7 +1818,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/94/2.jpg",
     "https://i.dummyjson.com/data/products/94/3.jpg",
     "https://i.dummyjson.com/data/products/94/thumbnail.webp"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 95,
@@ -1744,7 +1838,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/95/3.jpg",
     "https://i.dummyjson.com/data/products/95/4.jpg",
     "https://i.dummyjson.com/data/products/95/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 96,
@@ -1763,7 +1858,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/96/3.jpg",
     "https://i.dummyjson.com/data/products/96/4.jpg",
     "https://i.dummyjson.com/data/products/96/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 97,
@@ -1782,7 +1878,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/97/3.jpg",
     "https://i.dummyjson.com/data/products/97/4.webp",
     "https://i.dummyjson.com/data/products/97/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 98,
@@ -1801,7 +1898,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/98/3.jpg",
     "https://i.dummyjson.com/data/products/98/4.jpg",
     "https://i.dummyjson.com/data/products/98/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 99,
@@ -1820,7 +1918,8 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/99/3.jpg",
     "https://i.dummyjson.com/data/products/99/4.jpg",
     "https://i.dummyjson.com/data/products/99/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     },
     {
     id: 100,
@@ -1838,6 +1937,7 @@ export const initialState: IProduct[] = [
     "https://i.dummyjson.com/data/products/100/2.jpg",
     "https://i.dummyjson.com/data/products/100/3.jpg",
     "https://i.dummyjson.com/data/products/100/thumbnail.jpg"
-    ]
+    ],
+    amount: 0,
     }
 ]

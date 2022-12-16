@@ -14,6 +14,7 @@ export interface IProduct {
   category: string;
   thumbnail: string;
   images: Array<string>;
+  amount: number;
 }
 
 const productsSlice = createSlice({
