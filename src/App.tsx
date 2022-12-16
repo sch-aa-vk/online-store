@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         {initialState.map(item => (
-          <Route key={item.id} path={`/product-${item.id}`} element={<ProductPage product={item}/>} />
+          <Route key={item.id} path={`/products/${item.id}`} element={<ProductPage product={item}/>} />
         ))}
       </Routes>
     </Provider>

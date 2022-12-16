@@ -17,7 +17,7 @@ const ProductCard = (product: IProduct) => {
   return (
     <div className='products__item'>
       <div className='products__item-discount'>-{product.discountPercentage}%</div>
-      <Link to={`/product-${product.id}`}>
+      <Link to={`/products/${product.id}`}>
         <div className='products__item-pic' style={{backgroundImage: `url(${product.thumbnail})`}}></div>
       </Link>
       <div>{product.brand} {product.title}</div>
