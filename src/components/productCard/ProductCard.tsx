@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { IProduct } from '../products/products.slice';
-import { useAppDispatch, useAppSelector } from '../../functions/store/store.hooks';
-import { addToCart, removeFromCart, getCartProducts } from '../../pages/cart/cart.slice';
+import { IProduct } from 'store/interface/IProduct'; 
+import { useAppDispatch, useAppSelector } from 'store/store.hooks';
+import { addToCart, removeFromCart, getCartProducts } from 'store/slices/cart.slice';
 
-import './product-card.css';
+import './productCard.css';
 
-const ProductCard = (product: IProduct) => {
+export const ProductCard = (product: IProduct) => {
 
   const dispatch = useAppDispatch();
   const cartProducts = useAppSelector(getCartProducts);
@@ -31,5 +31,3 @@ const ProductCard = (product: IProduct) => {
     </div>
   )
 }
-
-export default ProductCard;

@@ -1,4 +1,4 @@
-import { IProduct } from "./products.slice";
+import { IProduct } from "store/interface/IProduct";
 
 export const initialState: IProduct[] = [
   {

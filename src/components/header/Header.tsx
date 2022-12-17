@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { getTotalPrice } from '../../pages/cart/cart.slice';
-import { useAppSelector } from '../../functions/store/store.hooks';
+import { getTotalPrice } from 'store/slices/cart.slice';
+import { useAppSelector } from 'store/store.hooks';
 
 import './header.css';
 
-const Header = () => {
+export const Header = () => {
 
   const totalPrice = useAppSelector(getTotalPrice);
 
@@ -17,5 +17,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header;

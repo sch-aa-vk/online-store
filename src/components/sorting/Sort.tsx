@@ -1,9 +1,10 @@
-import { useAppDispatch } from '../store/store.hooks';
-import { sortProducts } from '../../components/products/products.slice';
+import { useAppDispatch } from 'store/store.hooks';
+import { sortProducts } from 'store/slices/products.slice';
 
 import './sort.css';
 
-const AscendingSort: React.FC = () => {
+export const AscendingSort: React.FC = () => {
+    
     const dispatch = useAppDispatch();
     const handleSortSelect = (option: string) => dispatch(sortProducts(option));
 
@@ -21,5 +22,3 @@ const AscendingSort: React.FC = () => {
         </div>
     )
 }
-
-export default AscendingSort;

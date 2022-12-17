@@ -1,16 +1,16 @@
 import React from 'react';
-import Header from '../../components/header/Header';
-import { IProduct } from '../../components/products/products.slice';
-import { useAppDispatch, useAppSelector } from '../../functions/store/store.hooks';
-import { addToCart, getCartProducts, removeFromCart } from '../cart/cart.slice';
+import { Header } from 'components/header/Header'; 
+import { IProduct } from 'store/interface/IProduct'; 
+import { useAppDispatch, useAppSelector } from 'store/store.hooks';
+import { addToCart, getCartProducts, removeFromCart } from 'store/slices/cart.slice';
 
-import './product.css';
+import './productPage.css';
 
 type PropTypes = {
   product: IProduct;
 };
 
-const ProductPage: React.FC<PropTypes> = ({product}) => {
+export const ProductPage: React.FC<PropTypes> = ({product}) => {
 
   const dispatch = useAppDispatch();
   const cartProducts = useAppSelector(getCartProducts);
@@ -36,5 +36,3 @@ const ProductPage: React.FC<PropTypes> = ({product}) => {
     </div>
   )
 }
-
-export default ProductPage;

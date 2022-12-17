@@ -1,15 +1,14 @@
 import React from 'react';
-import { useAppSelector } from '../../functions/store/store.hooks';
-import { getCartProducts, getTotalPrice } from './cart.slice';
-import Header from '../../components/header/Header';
-import ProductCard from '../../components/product-card/ProductCard';
+import { useAppSelector } from 'store/store.hooks'; 
+import { getCartProducts } from 'store/slices/cart.slice';
+import { Header } from 'components/header/Header'; 
+import { ProductCard } from 'components/productCard/ProductCard'; 
 
 import './cart.css';
 
-const Cart = () => {
+export const Cart = () => {
 
   const cartProducts = useAppSelector(getCartProducts);
-  const totalPrice = useAppSelector(getTotalPrice);
 
   return (
     <div className="cart">
@@ -23,5 +22,3 @@ const Cart = () => {
     </div>
   )
 }
-
-export default Cart;
