@@ -8,6 +8,7 @@ import Home from './pages/main/Main';
 import Cart from './pages/cart/Cart';
 import ProductPage from './pages/product-page/ProductPage';
 import store from './functions/store/store';
+import { Page404 } from './pages/page404/Page404';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {initialState.map(item => (
           <Route key={item.id} path={`/products/${item.id}`} element={<ProductPage product={item}/>} />
         ))}
+        <Route path='*' element={<Page404 />}/>
       </Routes>
     </Provider>
   );
