@@ -22,6 +22,20 @@ const filtersSlice = createSlice({
                 }
             }
         },
+        categoryHandler: (state, action: PayloadAction<{category: string, checked: boolean}>) => {
+            console.log(action);
+            if (action.payload.checked) {
+                if (state.categories.indexOf(action.payload.category) === -1) {
+                    state.categories.push(action.payload.category)
+                }
+            } else {
+                console.log('working');
+                let index = state.categories.indexOf(action.payload.category);
+                if (index !== -1) {
+                    state.categories.splice(index, 1);
+                }
+            }
+        },
         // TODO: refactor this to look like code above
         addCategory: (state, action: PayloadAction<string>) => {
             state.categories.push(action.payload);
@@ -35,5 +49,5 @@ const filtersSlice = createSlice({
 
 export const filters = (state: RootState) => state.filters;
 
-export const {brandHandler, addCategory, removeCategory} = filtersSlice.actions;
+export const {brandHandler, categoryHandler, addCategory, removeCategory} = filtersSlice.actions;
 export default filtersSlice.reducer;

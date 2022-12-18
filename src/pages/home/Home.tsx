@@ -7,7 +7,7 @@ import { ProductCard } from 'components/productCard/ProductCard';
 
 import './home.css';
 import { useAppDispatch } from 'store/store.hooks';
-import { brandHandler } from 'store/slices/filters.slice';
+import { brandHandler, categoryHandler } from 'store/slices/filters.slice';
 import { initialState } from 'store/database/products';
 
 export const Home = () => {
@@ -16,8 +16,10 @@ export const Home = () => {
 
   const products = useSelector(getProductsSelector);
   const brandList = Array.from(new Set(initialState.map(item => item.brand)));
+  const categoryList = Array.from(new Set(initialState.map(item => item.category)));
 
   const brandSelect = (brand: {brand: string, checked: boolean}) => dispatch(brandHandler(brand));
+  const categorySelect = (category: {category: string, checked: boolean}) => dispatch(categoryHandler(category));
 
   return(
     <div className="app">
@@ -29,6 +31,15 @@ export const Home = () => {
           <label key={brand}>
             <input key={brand} onClick={(e) => brandSelect({ brand: (e.target as HTMLInputElement).name, checked: (e.target as HTMLInputElement).checked })} type="checkbox" name={brand} id={brand.replace(" ", "")} />
             {`${brand}  (${products.filter(product => product.brand === brand).length}/${initialState.filter(product => product.brand === brand).length})`}
+          </label>
+        )}
+      </div>
+      <div>
+        <h2>Category</h2>
+        {categoryList.map(category => 
+          <label key={category}>
+            <input key={category} onClick={(e) => categorySelect({ category: (e.target as HTMLInputElement).name, checked: (e.target as HTMLInputElement).checked })} type="checkbox" name={category} id={category.replace(" ", "")} />
+            {`${category}  (${products.filter(product => product.category === category).length}/${initialState.filter(product => product.category === category).length})`}
           </label>
         )}
       </div>
