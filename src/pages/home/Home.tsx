@@ -43,6 +43,7 @@ export const Home = () => {
           </label>
         )}
       </div>
+      <h5>found: {products.length}</h5>
       <h2 className='products__title'>Products</h2>
       <div className='products__item-wrapper'>
         {products.map(product =>
