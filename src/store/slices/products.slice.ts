@@ -37,6 +37,19 @@ const productsSlice = createSlice({
 
 export const { addProduct, sortProducts } = productsSlice.actions;
 
-export const getProductsSelector = (state: RootState) => state.products;
+// TODO: add price and stock in the future
+let filteredProducts = (state: RootState) => { 
+  if (state.filters.brands.length && state.filters.categories.length) {
+    return state.products.filter((product) => state.filters.brands.includes(product.brand) && state.filters.categories.includes(product.category));
+  } else if (state.filters.brands.length) {
+    return state.products.filter((product) => state.filters.brands.includes(product.brand));
+  } else if (state.filters.categories.length) {
+    return state.products.filter((product) => state.filters.categories.includes(product.category));
+  }
+
+  return state.products;
+};
+
+export const getProductsSelector = filteredProducts;
 
 export default productsSlice.reducer;
