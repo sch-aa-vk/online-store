@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AscendingSort } from 'components/sorting/Sort'; 
 import { Header } from 'components/header/Header';
@@ -15,11 +15,18 @@ export const Home = () => {
   const dispatch = useAppDispatch();
 
   const products = useSelector(getProductsSelector);
+  const [value, setValue] = useState("");
   const brandList = Array.from(new Set(initialState.map(item => item.brand)));
   const categoryList = Array.from(new Set(initialState.map(item => item.category)));
 
   const brandSelect = (brand: {brand: string, checked: boolean}) => dispatch(brandHandler(brand));
   const categorySelect = (category: {category: string, checked: boolean}) => dispatch(categoryHandler(category));
+  const filterItems = products.filter(item => 
+    item.brand.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) ||
+    item.title.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()) ||
+    item.price.toString().includes(value) || item.discountPercentage.toString().includes(value) ||
+    item.rating.toString().includes(value) || item.stock.toString().includes(value)
+  );
 
   return(
     <div className="app">
@@ -44,9 +51,12 @@ export const Home = () => {
         )}
       </div>
       <h5>found: {products.length}</h5>
+      <form>
+        <input type="text" placeholder="..." onChange={(e) => setValue(e.target.value)} />
+      </form>
       <h2 className='products__title'>Products</h2>
       <div className='products__item-wrapper'>
-        {products.map(product =>
+        {filterItems.map(product =>
           <ProductCard key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>
         )}
       </div>
