@@ -36,18 +36,10 @@ const filtersSlice = createSlice({
                 }
             }
         },
-        // TODO: refactor this to look like code above
-        addCategory: (state, action: PayloadAction<string>) => {
-            state.categories.push(action.payload);
-        },
-        removeCategory: (state, action: PayloadAction<string>) => {
-            let index = state.categories.indexOf(action.payload);
-            state.categories.splice(index, 1);
-        },
     }
 })
 
 export const filters = (state: RootState) => state.filters;
 
-export const {brandHandler, categoryHandler, addCategory, removeCategory} = filtersSlice.actions;
+export const {brandHandler, categoryHandler} = filtersSlice.actions;
 export default filtersSlice.reducer;
