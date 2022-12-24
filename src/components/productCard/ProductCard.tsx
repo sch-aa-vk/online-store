@@ -24,7 +24,7 @@ export const ProductCard = (product: IProduct) => {
       <div>${product.price}</div>
       <div>{product.rating.toFixed(1)}</div>
       <div className='products__item-btn-wrapper'>
-        <button className='products__item-btn' onClick={() => addToCartHandler(product)}>Add to card</button>
+        <button disabled={cartProducts.find((item) => item.amount >= product.stock) ? true : false} className='products__item-btn' onClick={() => addToCartHandler(product)}>Add to card</button>
         <button disabled={cartProducts.find((item) => item.id === product.id) ? false : true} onClick={() => handleRemoveFromCart(product.id)}>Remove from cart</button>
         <button className='products__item-btn' onClick={() => addToCartHandler(product)}>Buy now</button>
       </div>
