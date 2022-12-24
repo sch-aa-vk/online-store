@@ -9,13 +9,11 @@ const filtersSlice = createSlice({
     },
     reducers: {
         brandHandler: (state, action: PayloadAction<{brand: string, checked: boolean}>) => {
-            console.log(action);
             if (action.payload.checked) {
                 if (state.brands.indexOf(action.payload.brand) === -1) {
                     state.brands.push(action.payload.brand)
                 }
             } else {
-                console.log('working');
                 let index = state.brands.indexOf(action.payload.brand);
                 if (index !== -1) {
                     state.brands.splice(index, 1);
@@ -23,13 +21,11 @@ const filtersSlice = createSlice({
             }
         },
         categoryHandler: (state, action: PayloadAction<{category: string, checked: boolean}>) => {
-            console.log(action);
             if (action.payload.checked) {
                 if (state.categories.indexOf(action.payload.category) === -1) {
                     state.categories.push(action.payload.category)
                 }
             } else {
-                console.log('working');
                 let index = state.categories.indexOf(action.payload.category);
                 if (index !== -1) {
                     state.categories.splice(index, 1);
