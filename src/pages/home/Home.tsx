@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AscendingSort } from 'components/sorting/Sort'; 
 import { Header } from 'components/header/Header';
@@ -7,11 +7,15 @@ import { ProductCard } from 'components/productCard/ProductCard';
 
 import './home.css';
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
-import { brandHandler, categoryHandler, filters, resetFilters } from 'store/slices/filters.slice';
+import { brandHandler, categoryHandler, filters, resetFilters, setBrands, setCategories } from 'store/slices/filters.slice';
 import { initialState } from 'store/database/products';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Home = () => {
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {brands: selectedBrands} = useAppSelector(filters);
   const {categories: selectedCategories} = useAppSelector(filters);
@@ -20,6 +24,38 @@ export const Home = () => {
   const [value, setValue] = useState("");
   const brandList = Array.from(new Set(initialState.map(item => item.brand)));
   const categoryList = Array.from(new Set(initialState.map(item => item.category)));
+
+  const setCategoriesArray = (categories: string[]) => dispatch(setCategories(categories));
+  const setBrandsArray = (categories: string[]) => dispatch(setBrands(categories));
+
+  useEffect(() => {
+    if (queryParams.getAll('categories').length) {
+      setCategoriesArray(queryParams.getAll('categories'));
+    }
+    if (queryParams.getAll('brands').length) {
+      setBrandsArray(queryParams.getAll('brands'));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectedBrands) {
+      queryParams.delete('brands');
+      for (let i = 0; i < selectedBrands.length; i++) {
+        queryParams.append('brands', selectedBrands[i]);
+      }
+      navigate(`?${queryParams.toString()}`);
+    }
+  }, [selectedBrands]);
+
+  useEffect(() => {
+    if (selectedCategories) {
+      queryParams.delete('categories');
+      for (let i = 0; i < selectedCategories.length; i++) {
+        queryParams.append('categories', selectedCategories[i]);
+      }
+      navigate(`?${queryParams.toString()}`);
+    }
+  }, [selectedCategories]);
 
   const brandSelect = (brand: {brand: string, checked: boolean}) => dispatch(brandHandler(brand));
   const categorySelect = (category: {category: string, checked: boolean}) => dispatch(categoryHandler(category));

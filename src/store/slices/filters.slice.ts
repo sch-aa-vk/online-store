@@ -32,6 +32,12 @@ const filtersSlice = createSlice({
                 }
             }
         },
+        setBrands: (state, action: PayloadAction<string[]>) => {
+            state.brands = action.payload;
+        },
+        setCategories: (state, action: PayloadAction<string[]>) => {
+            state.categories = action.payload;
+        },
         resetFilters: (state) => {
             state.categories = [];
             state.brands = [];
@@ -41,5 +47,5 @@ const filtersSlice = createSlice({
 
 export const filters = (state: RootState) => state.filters;
 
-export const {brandHandler, categoryHandler, resetFilters} = filtersSlice.actions;
+export const {brandHandler, categoryHandler, resetFilters, setBrands, setCategories} = filtersSlice.actions;
 export default filtersSlice.reducer;
