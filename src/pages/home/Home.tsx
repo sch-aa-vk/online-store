@@ -6,13 +6,15 @@ import { getProductsSelector } from 'store/slices/products.slice';
 import { ProductCard } from 'components/productCard/ProductCard'; 
 
 import './home.css';
-import { useAppDispatch } from 'store/store.hooks';
-import { brandHandler, categoryHandler } from 'store/slices/filters.slice';
+import { useAppDispatch, useAppSelector } from 'store/store.hooks';
+import { brandHandler, categoryHandler, filters, resetFilters } from 'store/slices/filters.slice';
 import { initialState } from 'store/database/products';
 
 export const Home = () => {
 
   const dispatch = useAppDispatch();
+  const {brands: selectedBrands} = useAppSelector(filters);
+  const {categories: selectedCategories} = useAppSelector(filters);
 
   const products = useSelector(getProductsSelector);
   const [value, setValue] = useState("");
@@ -21,6 +23,7 @@ export const Home = () => {
 
   const brandSelect = (brand: {brand: string, checked: boolean}) => dispatch(brandHandler(brand));
   const categorySelect = (category: {category: string, checked: boolean}) => dispatch(categoryHandler(category));
+  const filtersReset = () => dispatch(resetFilters());
   const filterItems = products.filter(item => 
     item.brand.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) ||
     item.title.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()) ||
@@ -33,10 +36,14 @@ export const Home = () => {
       <Header />
       <AscendingSort/>
       <div>
+        Reset all filters
+        <button onClick={filtersReset}>Reset</button>
+      </div>
+      <div>
         <h2>Brands</h2>
         {brandList.map(brand => 
           <label key={brand}>
-            <input key={brand} onClick={(e) => brandSelect({ brand: (e.target as HTMLInputElement).name, checked: (e.target as HTMLInputElement).checked })} type="checkbox" name={brand} id={brand.replace(" ", "")} />
+            <input checked={selectedBrands.includes(brand)} key={brand} onChange={(e) => brandSelect({ brand: (e.target as HTMLInputElement).name, checked: (e.target as HTMLInputElement).checked })} type="checkbox" name={brand} id={brand.replace(" ", "")} />
             {`${brand}  (${products.filter(product => product.brand === brand).length}/${initialState.filter(product => product.brand === brand).length})`}
           </label>
         )}
@@ -45,7 +52,7 @@ export const Home = () => {
         <h2>Category</h2>
         {categoryList.map(category => 
           <label key={category}>
-            <input key={category} onClick={(e) => categorySelect({ category: (e.target as HTMLInputElement).name, checked: (e.target as HTMLInputElement).checked })} type="checkbox" name={category} id={category.replace(" ", "")} />
+            <input checked={selectedCategories.includes(category)} key={category} onChange={(e) => categorySelect({ category: (e.target as HTMLInputElement).name, checked: (e.target as HTMLInputElement).checked })} type="checkbox" name={category} id={category.replace(" ", "")} />
             {`${category}  (${products.filter(product => product.category === category).length}/${initialState.filter(product => product.category === category).length})`}
           </label>
         )}
