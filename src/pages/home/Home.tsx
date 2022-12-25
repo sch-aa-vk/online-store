@@ -76,6 +76,10 @@ export const Home = () => {
         <button onClick={filtersReset}>Reset</button>
       </div>
       <div>
+        Copy url
+        <button onClick={() => {navigator.clipboard.writeText(window.location.href)}}>Copy</button>
+      </div>
+      <div>
         <h2>Brands</h2>
         {brandList.map(brand => 
           <label key={brand}>
