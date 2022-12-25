@@ -4,7 +4,7 @@ import { RootState } from 'store/store';
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: [] as IProduct[],
+  initialState: (localStorage['redux-store']) ? JSON.parse(localStorage['redux-store']).cart as IProduct[] : [] as IProduct[],
   reducers: {
     addToCart: (state, action: PayloadAction<IProduct>) => {
       const productIndex = state.findIndex(product => product.id === action.payload.id);

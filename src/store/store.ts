@@ -11,6 +11,10 @@ const store = configureStore({
   }
 })
 
+store.subscribe(() => {
+  localStorage['redux-store'] = JSON.stringify(store.getState());
+})
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
