@@ -3,14 +3,13 @@ import { Header } from 'components/header/Header';
 import { IProduct } from 'store/interface/IProduct'; 
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 import { addToCart, getCartProducts, removeFromCart } from 'store/slices/cart.slice';
+import { initialState } from 'store/database/products';
+import { useParams, Link } from 'react-router-dom';
 
 import './productPage.css';
+import { resetFilters } from 'store/slices/filters.slice';
 
-type PropTypes = {
-  product: IProduct;
-};
-
-export const ProductPage: React.FC<PropTypes> = ({product}) => {
+export const ProductPage = () => {
 
   const dispatch = useAppDispatch();
   const cartProducts = useAppSelector(getCartProducts);
@@ -18,9 +17,19 @@ export const ProductPage: React.FC<PropTypes> = ({product}) => {
   const addToCartHandler = (product: IProduct) => dispatch(addToCart(product));
   const handleRemoveFromCart = (productId: number) => dispatch(removeFromCart(productId));
 
+  const { productId } = useParams();
+  const product = initialState[+productId! - 1];
+
   return(
-    <div className="product_page">
+    <div className='product_page'>
       <Header/>
+      <div className='breadcrumps'>
+        <Link className='breadcrumps-link' to={"/"} onClick={() => {dispatch(resetFilters())}}>Home</Link>
+        <span>/</span>
+        <Link className='breadcrumps-link' to={`/?categories=${product.category}`} onClick={() => {dispatch(resetFilters())}}>{product.category}</Link>
+        <span>/</span>
+        <Link className='breadcrumps-link' to={`/products/${product.id}`}>{product.title}</Link>
+      </div>
       <div className='products__item'>
         <div className='products__item-discount'>-{product.discountPercentage}%</div>
         <div className='products__item-pic' style={{backgroundImage: `url(${product.thumbnail})`}}></div>
