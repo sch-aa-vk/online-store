@@ -1,52 +1,5 @@
 .product_page {
-  width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.products__item {
-  position: relative;
-  font-size: 16px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  width: 200px;
-  height: 340px;
-  border: 1px solid rgb(194, 194, 194);
-  box-sizing: border-box;
-  padding: 5px;
-}
-
-.products__item-pic {
-  width: 100%;
-  height: 200px;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.products__item-btn-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: auto;
-}
-
-.products__item-btn {
-  font-size: 16px;
-}
-
-.products__item-discount {
-  position: absolute;
-  right: 5px;
-  top: 175px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 30px;
-  width: 70px;
-  background-color: rgb(45, 184, 41);
-  color: white;
+  padding: 0 25px;
 }
 
 .breadcrumps {
@@ -54,11 +7,95 @@
 }
 
 .breadcrumps > span {
+  font-family: 'Jaldi', sans-serif;
+  font-weight: 400;
   font-size: 2rem;
+  color: white;
   margin: 1rem;
 }
 
 .breadcrumps-link {
-  color: black;
+  position: relative;
+  width: max-content;
+  height: max-content;
+  font-family: 'Jaldi', sans-serif;
+  font-weight: 400;
   font-size: 2rem;
+  color: white;
+  text-decoration: none;
+  text-transform: capitalize;
+  overflow: hidden;
+}
+
+.breadcrumps-link::after {
+  position: absolute;
+  bottom: 6px;
+  right: 0;
+  content: '';
+  height: 1px;
+  width: 0%;
+  background: white;
+  transition: 0.5s all;
+}
+
+.breadcrumps-link:hover::after {
+  width: 100%;
+}
+
+.item-description {
+  width: 92vw;
+  height: 450px;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+.img-description {
+  width: max-content;
+}
+
+.item-img-description {
+  width: 300px;
+  height: 300px;
+}
+
+.item-img-description > img {
+  max-width: 280px;
+  max-height: 280px;
+}
+
+.item-text > h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.item-text > p {
+  font-size: 1.6rem;
+}
+
+.images-description {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cart-description {
+  right: 2rem;
+  bottom: 2rem;
+  width: max-content;
+  height: 50px;
+  padding: 0 1rem;
+  border-radius: 5px;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cart-description > p {
+  font-family: 'Jaldi', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.cart-description > img {
+  width: 48px;
+  height: 48px;
 }

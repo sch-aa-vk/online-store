@@ -1,44 +1,79 @@
-.products__item {
+.product__item {
   position: relative;
-  font-size: 16px;
+  height: 15vw;
+  width: 27vw;
+  padding: 0 1rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 13px;
   display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  width: 200px;
-  height: 340px;
-  border: 1px solid rgb(194, 194, 194);
-  box-sizing: border-box;
-  padding: 5px;
+  align-items: center;
+  gap: 1rem;
 }
 
-.products__item-pic {
-  width: 100%;
-  height: 200px;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.products__item-btn-wrapper {
+.product__item-img {
+  width: 13vw;
+  height: 13vw;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: auto;
-}
-
-.products__item-btn {
-  font-size: 16px;
-}
-
-.products__item-discount {
-  position: absolute;
-  right: 5px;
-  top: 175px;
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 30px;
-  width: 70px;
-  background-color: rgb(45, 184, 41);
-  color: white;
+  cursor: pointer;
+}
+
+.product__item-link,
+.product__item-link > img {
+  max-width: 12vw;
+  max-height: 12vw;
+}
+
+.product__item-description {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5px;
+}
+
+.product__item-description > h2 {
+  max-width: 14vw;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+}
+
+.product__item-description > p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #000;
+}
+
+.product__item-description > p > span {
+  color: #7e7e7e;
+}
+
+.product__item-cart {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: #db1e02;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.product__item-cart > img {
+  width: 32px;
+  height: 32px;
 }

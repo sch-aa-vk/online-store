@@ -1,0 +1,107 @@
+.filters__wrapper {
+  width: 300px;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 20px;
+}
+
+.select-sort {
+  height: 2rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+
+.filters__wrapper > div {
+  max-height: 300px;
+  padding: 0.5rem 0.7rem;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: hidden;
+}
+
+.filters__wrapper > div > h2 {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: lowercase;
+  color: #000;
+}
+
+.div__container {
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: scroll;
+}
+
+.div__container::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.div__container::-webkit-scrollbar-track {
+  background: #d9d9d9;
+  border-radius: 13px;
+}
+
+.div__container::-webkit-scrollbar-thumb {
+  background: rgba(61, 61, 61, 0.5);
+  border-radius: 25px;
+}
+
+.label {
+  position: relative;
+  width: 100%;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: #3d3d3d;
+  text-transform: lowercase;
+  user-select: none;
+  cursor: pointer;
+}
+
+.label > input {
+  position: absolute;
+  top: 7px;
+  right: 1px;
+  width: 15px;
+  height: 15px;
+  border: 0.5px solid #000000;
+  border-radius: 2px;
+  transition: 0.4s all;
+}
+
+
+.label > input::before {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: #db1e02;
+  border-radius: 2px;
+  transform: scale(0);
+}
+
+.label > input:checked::before {
+  transform: scale(1);
+}
+
+.filters__wrapper > button {
+  width: 270px;
+  height: 55px;
+  border: none;
+  border-radius: 5px;
+  background: #2e2e2e;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: #fff;
+  align-self: center;
+  cursor: pointer;
+}

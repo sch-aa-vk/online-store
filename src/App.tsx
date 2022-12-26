@@ -8,6 +8,8 @@ import { Cart } from 'pages/cart/Cart';
 import { ProductPage } from 'pages/productPage/ProductPage';
 import { Page404 } from 'pages/page404/Page404';
 
+import './app.css';
+
 export const App = () => {
   return (
     <Provider store={store}>
