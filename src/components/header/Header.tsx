@@ -4,6 +4,8 @@ import { getCartProducts, getTotalPrice } from 'store/slices/cart.slice';
 import { useAppSelector } from 'store/store.hooks';
 
 import './header.css';
+import logo from 'assets/logo.svg';
+import cart from 'assets/cart.svg';
 
 export const Header = () => {
 
@@ -14,10 +16,16 @@ export const Header = () => {
 
   return(
     <header className='header'>
-      <Link className='link' to={"/"}>Home</Link>
-      <Link className='link' to={"/cart"}>Cart</Link>
-      <h5>{totalPrice}</h5>
-      <h5>items in cart: {itemsInCart}</h5>
+      <Link className='store-link' to={"/"}>
+        <img className='store-logo' src={logo} alt="online store logo" />
+        <p className='store-text'>online store</p>
+      </Link>
+      <Link className='cart-link' to={"/cart"}>
+        <button className='cart-button'>
+          <img className='cart-logo' src={cart} alt="cart logo" />
+          <p className='cart-text'>{itemsInCart}, ${totalPrice}</p>
+        </button>
+      </Link>
     </header>
   )
 }
