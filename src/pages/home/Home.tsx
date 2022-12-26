@@ -4,29 +4,42 @@ import { AscendingSort } from 'components/sorting/Sort';
 import { Header } from 'components/header/Header';
 import { getProductsSelector } from 'store/slices/products.slice'; 
 import { ProductCard } from 'components/productCard/ProductCard'; 
+import RangeSlider from 'components/rangeSlider/rangeSlider';
 
 import './home.css';
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
-import { brandHandler, categoryHandler, filters, resetFilters, setBrands, setCategories } from 'store/slices/filters.slice';
+import { brandHandler, categoryHandler, filters, resetFilters, setBrands, setCategories, setPriceRange } from 'store/slices/filters.slice';
 import { initialState } from 'store/database/products';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { IProduct } from 'store/interface/IProduct'; 
 
 export const Home = () => {
+
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {brands: selectedBrands} = useAppSelector(filters);
-  const {categories: selectedCategories} = useAppSelector(filters);
+  const selectedBrands = useAppSelector((state) => state.filters.brands);
+  const selectedCategories = useAppSelector((state) => state.filters.categories);
+  const priceRange = useAppSelector((state) => state.filters.priceRange);
+
+  // const [products, setProducts] = useState(useSelector(getProductsSelector));
 
   const products = useSelector(getProductsSelector);
   const [value, setValue] = useState("");
-  const brandList = Array.from(new Set(initialState.map(item => item.brand)));
-  const categoryList = Array.from(new Set(initialState.map(item => item.category)));
+  const [brandList, setBrandList] = useState(Array.from(new Set(initialState.map(item => item.brand))));
+  const [categoryList, setCategoryList] = useState(Array.from(new Set(initialState.map(item => item.category))));
+  // const brandList = Array.from(new Set(initialState.map(item => item.brand)));
+  // const categoryList = Array.from(new Set(initialState.map(item => item.category)));
 
   const setCategoriesArray = (categories: string[]) => dispatch(setCategories(categories));
   const setBrandsArray = (categories: string[]) => dispatch(setBrands(categories));
+  const brandSelect = (brand: {brand: string, checked: boolean}) => dispatch(brandHandler(brand));
+  const categorySelect = (category: {category: string, checked: boolean}) => dispatch(categoryHandler(category));
+  const filtersReset = () => dispatch(resetFilters());
 
   useEffect(() => {
     if (queryParams.getAll('categories').length) {
@@ -34,6 +47,14 @@ export const Home = () => {
     }
     if (queryParams.getAll('brands').length) {
       setBrandsArray(queryParams.getAll('brands'));
+    }
+    if (queryParams.get('price')) {
+      let price = queryParams.get('price');
+      let priceArr: number[];
+      if (price) {
+        priceArr = price.split('-').map((elem) => +elem);
+        dispatch(setPriceRange(priceArr));
+      }
     }
   }, []);
 
@@ -57,15 +78,49 @@ export const Home = () => {
     }
   }, [selectedCategories]);
 
-  const brandSelect = (brand: {brand: string, checked: boolean}) => dispatch(brandHandler(brand));
-  const categorySelect = (category: {category: string, checked: boolean}) => dispatch(categoryHandler(category));
-  const filtersReset = () => dispatch(resetFilters());
-  const filterItems = products.filter(item => 
-    item.brand.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) ||
-    item.title.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()) ||
-    item.price.toString().includes(value) || item.discountPercentage.toString().includes(value) ||
-    item.rating.toString().includes(value) || item.stock.toString().includes(value)
-  );
+  useEffect(() => {
+    queryParams.delete('price');
+    if (priceRange && priceRange.length) {
+      if (priceRange[0] !== 0 && priceRange[1] !== 0) {
+        queryParams.append('price', priceRange.join('-'));
+        navigate(`?${queryParams.toString()}`);
+      }
+    }
+  }, [priceRange]);
+
+  const [filterItems, setFilterItems] = useState([] as IProduct[]);
+
+  useEffect(() => {
+    if (products) {
+      console.log("products useEffect");
+      setFilterItems(products.filter(item => 
+        item.brand.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) ||
+        item.title.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()) ||
+        item.price.toString().includes(value) || item.discountPercentage.toString().includes(value) ||
+        item.rating.toString().includes(value) || item.stock.toString().includes(value)
+      ));
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (products) {
+      console.log("products2 useEffect");
+      setFilterItems(products);
+    }
+  }, [selectedBrands, selectedCategories, priceRange, products]);
+
+  useEffect(() => {
+    if (filterItems && filterItems.length) {
+      console.log(filterItems);
+      setMinPrice(filterItems.reduce((prev, cur) => prev.price < cur.price ? prev : cur).price);
+      setMaxPrice(filterItems.reduce((prev, cur) => prev.price > cur.price ? prev : cur).price);
+      console.log(filterItems.reduce((prev, cur) => prev.price < cur.price ? prev : cur).price);
+    }
+  }, [filterItems]);
+
+  useEffect(() => {
+    dispatch(setPriceRange([minPrice, maxPrice]));
+  }, [minPrice, maxPrice]);
 
   return(
     <div className="app">
@@ -101,6 +156,7 @@ export const Home = () => {
       <form>
         <input type="text" placeholder="..." onChange={(e) => setValue(e.target.value)} />
       </form>
+      <RangeSlider max={maxPrice} min={minPrice}></RangeSlider>
       <h2 className='products__title'>Products</h2>
       <div className='products__item-wrapper'>
         {filterItems.map(product =>
