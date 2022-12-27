@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Filters } from 'components/sorting/Sort'; 
 import { Header } from 'components/header/Header';
@@ -8,18 +8,25 @@ import { ProductCard } from 'components/productCard/ProductCard';
 import './home.css';
 
 import search from 'assets/search.svg';
+import { IProduct } from 'store/interface/IProduct';
 
 export const Home = () => {
 
   const products = useSelector(getProductsSelector);
   const [value, setValue] = useState("");
+  const [filterItems, setFilterItems] = useState([] as IProduct[]);
 
-  const filterItems = products.filter(item => 
-    item.brand.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) ||
-    item.title.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()) ||
-    item.price.toString().includes(value) || item.discountPercentage.toString().includes(value) ||
-    item.rating.toString().includes(value) || item.stock.toString().includes(value)
-  );
+  useEffect(() => {
+    if (products) {
+      console.log("products useEffect");
+      setFilterItems(products.filter(item => 
+        item.brand.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) ||
+        item.title.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()) ||
+        item.price.toString().includes(value) || item.discountPercentage.toString().includes(value) ||
+        item.rating.toString().includes(value) || item.stock.toString().includes(value)
+      ));
+    }
+  }, [value]);
 
   return(
     <>

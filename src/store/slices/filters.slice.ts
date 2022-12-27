@@ -5,7 +5,8 @@ const filtersSlice = createSlice({
     name: 'filters',
     initialState: {
         brands: [] as Array<string>,
-        categories: [] as Array<string>
+        categories: [] as Array<string>,
+        priceRange: [] as Array<number>,
     },
     reducers: {
         brandHandler: (state, action: PayloadAction<{brand: string, checked: boolean}>) => {
@@ -41,11 +42,14 @@ const filtersSlice = createSlice({
         resetFilters: (state) => {
             state.categories = [];
             state.brands = [];
-        }
+        },
+        setPriceRange: (state, action: PayloadAction<number[]>) => {
+            state.priceRange = action.payload;
+        },
     }
 })
 
 export const filters = (state: RootState) => state.filters;
 
-export const {brandHandler, categoryHandler, resetFilters, setBrands, setCategories} = filtersSlice.actions;
+export const {brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange} = filtersSlice.actions;
 export default filtersSlice.reducer;

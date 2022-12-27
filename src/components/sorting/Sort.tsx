@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 import { sortProducts } from 'store/slices/products.slice';
 import { initialState } from 'store/database/products';
 import { getProductsSelector } from 'store/slices/products.slice';
-import { brandHandler, categoryHandler, filters, resetFilters, setBrands, setCategories } from 'store/slices/filters.slice';
+import { brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange } from 'store/slices/filters.slice';
+import { IProduct } from 'store/interface/IProduct'; 
 
 import './sort.css';
+
+import { RangeSlider } from 'components/rangeSlider/rangeSlider';
+
 
 export const Filters: React.FC = () => {
 
@@ -15,22 +19,25 @@ export const Filters: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
-  const {brands: selectedBrands} = useAppSelector(filters);
-  const {categories: selectedCategories} = useAppSelector(filters);
+  const selectedBrands = useAppSelector((state) => state.filters.brands);
+  const selectedCategories = useAppSelector((state) => state.filters.categories);
+  const priceRange = useAppSelector((state) => state.filters.priceRange);
 
   const handleSortSelect = (option: string) => dispatch(sortProducts(option));
-  const filtersReset = () => dispatch(resetFilters());
 
-  const brandList = Array.from(new Set(initialState.map(item => item.brand)));
-  const categoryList = Array.from(new Set(initialState.map(item => item.category)));
+  const [brandList, setBrandList] = useState(Array.from(new Set(initialState.map(item => item.brand))));
+  const [categoryList, setCategoryList] = useState(Array.from(new Set(initialState.map(item => item.category))));
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [filterItems, setFilterItems] = useState([] as IProduct[]);
 
   const products = useSelector(getProductsSelector);
 
   const setCategoriesArray = (categories: string[]) => dispatch(setCategories(categories));
   const setBrandsArray = (categories: string[]) => dispatch(setBrands(categories));
-
   const brandSelect = (brand: {brand: string, checked: boolean}) => dispatch(brandHandler(brand));
   const categorySelect = (category: {category: string, checked: boolean}) => dispatch(categoryHandler(category));
+  const filtersReset = () => dispatch(resetFilters());
 
   useEffect(() => {
     if (queryParams.getAll('categories').length) {
@@ -39,7 +46,45 @@ export const Filters: React.FC = () => {
     if (queryParams.getAll('brands').length) {
       setBrandsArray(queryParams.getAll('brands'));
     }
+    if (queryParams.get('price')) {
+      let price = queryParams.get('price');
+      let priceArr: number[];
+      if (price) {
+        priceArr = price.split('-').map((elem) => +elem);
+        dispatch(setPriceRange(priceArr));
+      }
+    }
   }, []);
+
+  useEffect(() => {
+    queryParams.delete('price');
+    if (priceRange && priceRange.length) {
+      if (priceRange[0] !== 0 && priceRange[1] !== 0) {
+        queryParams.append('price', priceRange.join('-'));
+        navigate(`?${queryParams.toString()}`);
+      }
+    }
+  }, [priceRange]);
+
+  useEffect(() => {
+    if (products) {
+      console.log("products2 useEffect");
+      setFilterItems(products);
+    }
+  }, [selectedBrands, selectedCategories, priceRange, products]);
+
+  useEffect(() => {
+    if (filterItems && filterItems.length) {
+      console.log(filterItems);
+      setMinPrice(filterItems.reduce((prev, cur) => prev.price < cur.price ? prev : cur).price);
+      setMaxPrice(filterItems.reduce((prev, cur) => prev.price > cur.price ? prev : cur).price);
+      console.log(filterItems.reduce((prev, cur) => prev.price < cur.price ? prev : cur).price);
+    }
+  }, [filterItems]);
+
+  useEffect(() => {
+    dispatch(setPriceRange([minPrice, maxPrice]));
+  }, [minPrice, maxPrice]);
 
   useEffect(() => {
     if (selectedBrands) {
@@ -64,6 +109,9 @@ export const Filters: React.FC = () => {
   return (
     <>
       <div className='filters__wrapper'>
+        <div>
+          <RangeSlider max={maxPrice} min={minPrice}></RangeSlider>
+        </div>
         <div className='select-sort__wrapper'>
           <select onChange={(e) => handleSortSelect(e.target.value)} className='select-sort'>
             <option value="placeholder">Choose sort</option>
