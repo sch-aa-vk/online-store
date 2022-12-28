@@ -8,24 +8,17 @@ import { ProductCard } from 'components/productCard/ProductCard';
 import './home.css';
 
 import search from 'assets/search.svg';
-import { IProduct } from 'store/interface/IProduct';
+import { setValueChange } from 'store/slices/filters.slice';
+import { useAppDispatch } from 'store/store.hooks';
 
 export const Home = () => {
 
+  const dispatch = useAppDispatch();
   const products = useSelector(getProductsSelector);
   const [value, setValue] = useState("");
-  const [filterItems, setFilterItems] = useState([] as IProduct[]);
 
   useEffect(() => {
-    if (products) {
-      console.log("products useEffect");
-      setFilterItems(products.filter(item => 
-        item.brand.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) ||
-        item.title.toLowerCase().includes(value.toLowerCase()) || item.description.toLowerCase().includes(value.toLowerCase()) ||
-        item.price.toString().includes(value) || item.discountPercentage.toString().includes(value) ||
-        item.rating.toString().includes(value) || item.stock.toString().includes(value)
-      ));
-    }
+    dispatch(setValueChange([value]));
   }, [value]);
 
   return(
@@ -44,7 +37,7 @@ export const Home = () => {
             </form>
           </div>
           <div className='products__wrapper'>
-            {filterItems.map(product =>
+            {products.map(product =>
               <ProductCard key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>
             )}
           </div>

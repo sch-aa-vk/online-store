@@ -34,8 +34,8 @@ export function RangeSlider(props: ISliderProps) {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
-        max={props.max}
-        min={props.min}
+        max={1749}
+        min={10}
         value={value}
         onChange={handleChange}
         onChangeCommitted={handleChangeCommitted}

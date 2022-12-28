@@ -39,18 +39,31 @@ export const { addProduct, sortProducts } = productsSlice.actions;
 
 // TODO: add price and stock in the future
 let filteredProducts = (state: RootState) => {
+  const hasRange = state.filters.priceRange.length && state.filters.priceRange[1] !== 0;
+  const hasBrands = state.filters.brands.length;
+  const hasCategories = state.filters.categories.length;
+  const hasValue = state.filters.value.length;
+
   let filtered = state.products;
 
-  if (state.filters.brands.length) {
-    filtered = state.products.filter((product) => state.filters.brands.includes(product.brand));
+  if (hasBrands) {
+    filtered = filtered.filter((product) => state.filters.brands.includes(product.brand));
   }
-  if (state.filters.categories.length) {
-    filtered = state.products.filter((product) => state.filters.categories.includes(product.category));
+  if (hasCategories) {
+    filtered = filtered.filter((product) => state.filters.categories.includes(product.category));
   }
-  if (state.filters.priceRange.length && state.filters.priceRange[1] !== 0) {
-    filtered = state.products.filter((product) => product.price >= state.filters.priceRange[0] && product.price <= state.filters.priceRange[1]);
+  if (hasValue) {
+    filtered = filtered.filter((product) => 
+      product.brand.toLowerCase().includes(state.filters.value[0].toLowerCase()) || product.category.toLowerCase().includes(state.filters.value[0].toLowerCase()) ||
+      product.title.toLowerCase().includes(state.filters.value[0].toLowerCase()) || product.description.toLowerCase().includes(state.filters.value[0].toLowerCase()) ||
+      product.price.toString().includes(state.filters.value[0]) || product.discountPercentage.toString().includes(state.filters.value[0]) ||
+      product.rating.toString().includes(state.filters.value[0]) || product.stock.toString().includes(state.filters.value[0])
+    )
   }
-  
+  if (hasRange) {
+    filtered = filtered.filter((product) => product.price >= state.filters.priceRange[0] && product.price <= state.filters.priceRange[1]);
+  }
+
   return filtered;
 }
 
