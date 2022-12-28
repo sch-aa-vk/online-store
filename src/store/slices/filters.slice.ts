@@ -7,6 +7,7 @@ const filtersSlice = createSlice({
         brands: [] as Array<string>,
         categories: [] as Array<string>,
         priceRange: [] as Array<number>,
+        value: [] as Array<string>
     },
     reducers: {
         brandHandler: (state, action: PayloadAction<{brand: string, checked: boolean}>) => {
@@ -19,6 +20,7 @@ const filtersSlice = createSlice({
                 if (index !== -1) {
                     state.brands.splice(index, 1);
                 }
+                state.priceRange = [10, 1749];
             }
         },
         categoryHandler: (state, action: PayloadAction<{category: string, checked: boolean}>) => {
@@ -31,6 +33,7 @@ const filtersSlice = createSlice({
                 if (index !== -1) {
                     state.categories.splice(index, 1);
                 }
+                state.priceRange = [10, 1749];
             }
         },
         setBrands: (state, action: PayloadAction<string[]>) => {
@@ -42,14 +45,20 @@ const filtersSlice = createSlice({
         resetFilters: (state) => {
             state.categories = [];
             state.brands = [];
+            state.priceRange = [10, 1749];
         },
         setPriceRange: (state, action: PayloadAction<number[]>) => {
             state.priceRange = action.payload;
         },
+        setValueChange: (state, action: PayloadAction<string[]>) => {
+            state.value = action.payload;
+            if (action.payload = ['']) {
+                state.priceRange = [10, 1749];
+            }
+        }
     }
 })
 
 export const filters = (state: RootState) => state.filters;
-
-export const {brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange} = filtersSlice.actions;
+export const {brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange, setValueChange} = filtersSlice.actions;
 export default filtersSlice.reducer;

@@ -6,6 +6,8 @@ import { addToCart, removeFromCart, getCartProducts } from 'store/slices/cart.sl
 
 import './productCard.css';
 
+import cart from 'assets/add-to-cart.svg';
+
 export const ProductCard = (product: IProduct) => {
 
   const navigate = useNavigate();
@@ -32,19 +34,22 @@ export const ProductCard = (product: IProduct) => {
   }
   
   return (
-    <div className='products__item'>
-      <div className='products__item-discount'>-{product.discountPercentage}%</div>
-      <Link to={`/products/${product.id}`}>
-        <div className='products__item-pic' style={{backgroundImage: `url(${product.thumbnail})`}}></div>
-      </Link>
-      <div>{product.brand} {product.title}</div>
-      <div>${product.price}</div>
-      <div>{product.rating.toFixed(1)}</div>
-      <div className='products__item-btn-wrapper'>
-        <button disabled={cartProducts.find((item) => item.amount >= product.stock) ? true : false} className='products__item-btn' onClick={() => addToCartHandler(product)}>Add to card</button>
-        <button disabled={cartProducts.find((item) => item.id === product.id) ? false : true} onClick={() => handleRemoveFromCart(product.id)}>Remove from cart</button>
-        <button className='products__item-btn' onClick={() => buyNowHandler(product)}>Buy now</button>
+    <div className='product__item'>
+      <div className='product__item-img'>
+        <Link className='product__item-link' to={`/products/${product.id}`}>
+          <img src={product.thumbnail} alt={product.title} />
+        </Link>
       </div>
+      <div className='product__item-description'>
+        <h2>{product.title}</h2>
+        <p>Category: <span>{product.category}</span></p>
+        <p>Brand: <span>{product.brand}</span></p>
+        <p>Price: <span>${product.price}</span></p>
+        <p>Stock: <span>{product.stock}</span></p>
+      </div>
+      <button className='product__item-cart' onClick={() => addToCartHandler(product)}>
+        <img src={cart} alt="cart"/>
+      </button>
     </div>
   )
 }
