@@ -37,9 +37,13 @@ export const Home = () => {
             </form>
           </div>
           <div className='products__wrapper'>
-            {products.map(product =>
-              <ProductCard key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>
-            )}
+            {products.length !== 0 
+                ? products.map(product =>
+                    <ProductCard key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>
+                  )
+                : <>Нет товаров по данным фильтрам</>
+            }
+                
           </div>
         </div>
       </div>
