@@ -19,7 +19,6 @@ export function RangeSlider(props: ISliderProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log("props change");
     setValue([props.min, props.max] as number[]);
   }, [props.min, props.max]);
 
