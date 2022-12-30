@@ -39,6 +39,14 @@ export const Cart = () => {
     }
   }, [page]);
 
+  useEffect(() => {
+    if (cartProducts) {
+      if (Number(queryParams.get('page')) > maxPageNumber && maxPageNumber >= 1) {
+        setPage(maxPageNumber);
+      }
+    }
+  }, [cartProducts]);
+
   return (
     <>
       <Header/>
