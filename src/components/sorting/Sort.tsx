@@ -11,7 +11,6 @@ import { IProduct } from 'store/interface/IProduct';
 import './sort.css';
 
 import { RangeSlider } from 'components/rangeSlider/rangeSlider';
-import { ProductCard } from 'components/productCard/ProductCard';
 
 
 export const Filters: React.FC = () => {

@@ -36,7 +36,7 @@
 }
 
 .cart-pagination > label > input {
-  width: 15px;
+  width: 40px;
   height: 25px;
   border: 2px solid #000;
   border-radius: 5px;
@@ -67,4 +67,17 @@
   border-radius: 5px;
   background: none;
   cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-item > p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #000;
 }
