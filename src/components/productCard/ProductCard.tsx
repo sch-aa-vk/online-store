@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { IProduct } from 'store/interface/IProduct'; 
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
-import { addToCart, removeFromCart, getCartProducts } from 'store/slices/cart.slice';
+import { addToCart, deleteFromCart, getCartProducts } from 'store/slices/cart.slice';
 
 import './productCard.css';
 
@@ -10,31 +10,20 @@ import cart from 'assets/add-to-cart.svg';
 
 export const ProductCard = (product: IProduct) => {
 
-  const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
   const cartProducts = useAppSelector(getCartProducts);
+  const productInCard = cartProducts.find((item) => item.id === product.id);
 
-  const addToCartHandler = (product: IProduct) => dispatch(addToCart(product));
-  const handleRemoveFromCart = (productId: number) => dispatch(removeFromCart(productId));
-  const buyNowHandler = (product: IProduct) => {
-    let productInCard = cartProducts.find((item) => item.id === product.id);
-
+  const addToCartHandler = (product: IProduct) => {
     if (productInCard) {
-      if (productInCard.amount >= product.stock) {
-        navigate('/cart');
-      } else {
-        navigate('/cart');
-        return addToCartHandler(product);
-      }
+      dispatch(deleteFromCart(product.id));
     } else {
-      navigate('/cart');
-      return addToCartHandler(product);
+      dispatch(addToCart(product));
     }
   }
   
   return (
-    <div className='product__item'>
+    <div className='product__item' style={{border: `${productInCard ? '1px solid #db1e02' : '1px solid rgba(0, 0, 0, 0.15)'}`}}>
       <div className='product__item-img'>
         <Link className='product__item-link' to={`/products/${product.id}`}>
           <img src={product.thumbnail} alt={product.title} />

@@ -9,7 +9,9 @@ const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<IProduct>) => {
       const productIndex = state.findIndex(product => product.id === action.payload.id);
       if (productIndex !== - 1) {
-        state[productIndex].amount += 1;
+        if (state[productIndex].amount < state[productIndex].stock) {
+          state[productIndex].amount += 1;
+        }
       } else {
         state.push({...action.payload, amount: 1});
       }
@@ -21,6 +23,9 @@ const cartSlice = createSlice({
       } else {
         return state.filter(product => product.id !== action.payload);
       }
+    },
+    deleteFromCart: (state, action: PayloadAction<number>) => {
+      return state.filter(product => product.id !== action.payload);
     }
   }
 })
@@ -28,5 +33,5 @@ const cartSlice = createSlice({
 export const getCartProducts = (state: RootState) => state.cart;
 export const getTotalPrice = (state: RootState) => state.cart.reduce((acc, next) => acc += (next.amount * next.price),0);
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, deleteFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

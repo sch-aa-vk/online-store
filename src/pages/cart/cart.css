@@ -3,7 +3,68 @@
 }
 
 .cart-wrapper {
+  width: 60%;
+  height: max-content;
+  padding: 2rem;
+  border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 100%);
+}
+
+.cart-pagination {
+  height: 51px;
+  width: 100%;
+  padding: 0 35px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-pagination > p,
+.cart-pagination > label {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.cart-pagination > label > input {
+  width: 15px;
+  height: 25px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 0 5px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.cart-pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-pagination-pages >p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.cart-pagination-pages > button {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
 }

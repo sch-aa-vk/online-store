@@ -1,37 +1,17 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { IProduct } from 'store/interface/IProduct'; 
-import { useAppDispatch, useAppSelector } from 'store/store.hooks';
-import { addToCart, removeFromCart, getCartProducts } from 'store/slices/cart.slice';
-
-import cart from 'assets/add-to-cart.svg';
+import { useAppDispatch } from 'store/store.hooks';
+import { addToCart, removeFromCart } from 'store/slices/cart.slice';
 
 import './cartForCart.css';
 
 export const CartForCart = (product: IProduct) => {
 
-  const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
-  const cartProducts = useAppSelector(getCartProducts);
 
   const addToCartHandler = (product: IProduct) => dispatch(addToCart(product));
   const handleRemoveFromCart = (productId: number) => dispatch(removeFromCart(productId));
-  const buyNowHandler = (product: IProduct) => {
-    let productInCard = cartProducts.find((item) => item.id === product.id);
-
-    if (productInCard) {
-      if (productInCard.amount >= product.stock) {
-        navigate('/cart');
-      } else {
-        navigate('/cart');
-        return addToCartHandler(product);
-      }
-    } else {
-      navigate('/cart');
-      return addToCartHandler(product);
-    }
-  }
   
   return (
     <div className='product__item item-for-cart'>
