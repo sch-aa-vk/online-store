@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from 'components/header/Header'; 
 import { IProduct } from 'store/interface/IProduct'; 
-import { useAppDispatch } from 'store/store.hooks';
-import { addToCart } from 'store/slices/cart.slice';
+import { useAppDispatch, useAppSelector } from 'store/store.hooks';
+import { addToCart, deleteFromCart, getCartProducts } from 'store/slices/cart.slice';
 import { initialState } from 'store/database/products';
 import { useParams, Link } from 'react-router-dom';
 import { resetFilters } from 'store/slices/filters.slice';
@@ -14,15 +14,22 @@ export const ProductPage = () => {
 
   const dispatch = useAppDispatch();
 
-  const addToCartHandler = (product: IProduct) => dispatch(addToCart(product));
-
   const { productId } = useParams();
+  const cartProducts = useAppSelector(getCartProducts);
   const product = initialState[+productId! - 1];
+  const productInCard = cartProducts.find((item) => item.id === product.id);
   const imagesBlocks = product.images.map((item) => 
     <div className='product__item-img item-img-description small-img' key={item} onClick={() => changeImg(item)}>
       <img src={item} alt='' />
     </div>
   )
+  const addToCartHandler = (product: IProduct) => {
+    if (productInCard) {
+      dispatch(deleteFromCart(product.id));
+    } else {
+      dispatch(addToCart(product));
+    }
+  }
 
   return(
     <>
@@ -56,8 +63,8 @@ export const ProductPage = () => {
             <p>Stock: <span>{product.stock}</span></p>
             <p>Description: <span>{product.description}</span></p>
           </div>
-          <button className='product__item-cart cart-description' onClick={() => addToCartHandler(product)}>
-            <p>Add To Cart</p>
+          <button className='product__item-cart cart-description' onClick={() => addToCartHandler(product)} style={{background: `${productInCard ? '#9e9492' : '#db1e02'}`}}>
+            <p>{productInCard ? 'Remove From Cart' : 'Add To Cart'}</p>
             <img src={cart} alt="cart"/>
           </button>
         </div>

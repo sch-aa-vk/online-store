@@ -30,6 +30,9 @@ const productsSlice = createSlice({
         case 'low discount first':
           state.sort((a, b) => a.discountPercentage - b.discountPercentage);
           break;
+        case 'choose sort':
+          state.sort((a, b) => a.id - b.id);
+          break;
       }      
     }
   }

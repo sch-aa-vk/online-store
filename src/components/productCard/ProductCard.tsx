@@ -36,7 +36,7 @@ export const ProductCard = (product: IProduct) => {
         <p>Price: <span>${product.price}</span></p>
         <p>Stock: <span>{product.stock}</span></p>
       </div>
-      <button className='product__item-cart' onClick={() => addToCartHandler(product)}>
+      <button className='product__item-cart' onClick={() => addToCartHandler(product)} style={{background: `${productInCard ? '#9e9492' : '#db1e02'}`}}>
         <img src={cart} alt="cart"/>
       </button>
     </div>
