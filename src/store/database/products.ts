@@ -13,8 +13,6 @@ export const initialState: IProduct[] = [
     category: "smartphones",
     thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
     images: [
-    "https://i.dummyjson.com/data/products/1/1.jpg",
-    "https://i.dummyjson.com/data/products/1/2.jpg",
     "https://i.dummyjson.com/data/products/1/3.jpg",
     "https://i.dummyjson.com/data/products/1/4.jpg",
     "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
@@ -102,7 +100,7 @@ export const initialState: IProduct[] = [
     discountPercentage: 11.02,
     rating: 4.57,
     stock: 83,
-    brand: "APPle",
+    brand: "Apple",
     category: "laptops",
     thumbnail: "https://i.dummyjson.com/data/products/6/thumbnail.png",
     images: [
@@ -277,7 +275,7 @@ export const initialState: IProduct[] = [
     discountPercentage: 10.99,
     rating: 4.7,
     stock: 105,
-    brand: "Lord - Al-Rehab",
+    brand: "Lord-Al-Rehab",
     category: "fragrances",
     thumbnail: "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
     images: [
@@ -645,7 +643,7 @@ export const initialState: IProduct[] = [
     {
     id: 34,
     title: "Plastic Table",
-    description: "V﻿ery good quality plastic table for multi purpose now in reasonable price",
+    description: "Very good quality plastic table for multi purpose now in reasonable price",
     price: 50,
     discountPercentage: 4,
     rating: 4.01,

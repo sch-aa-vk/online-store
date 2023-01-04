@@ -9,6 +9,7 @@
 .breadcrumps > span {
   font-size: 2rem;
   margin: 1rem;
+  color: aliceblue;
 }
 
 .breadcrumps-link {
@@ -47,7 +48,15 @@
 }
 
 .img-description {
-  width: max-content;
+  max-width: 300px;
+}
+
+.small-img-collection {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .item-img-description {
@@ -55,9 +64,21 @@
   height: 300px;
 }
 
+.item-img-description.small-img {
+  width: 55px;
+  height: 55px;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 25%);
+}
+
 .item-img-description > img {
   max-width: 280px;
   max-height: 280px;
+}
+
+.item-img-description.small-img > img {
+  width: 48px;
+  height: 48px;
 }
 
 .item-text > h2 {

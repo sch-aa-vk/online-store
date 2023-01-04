@@ -18,6 +18,11 @@ export const ProductPage = () => {
 
   const { productId } = useParams();
   const product = initialState[+productId! - 1];
+  const imagesBlocks = product.images.map((item) => 
+    <div className='product__item-img item-img-description small-img' key={item} onClick={() => changeImg(item)}>
+      <img src={item} alt='' />
+    </div>
+  )
 
   return(
     <>
@@ -28,12 +33,17 @@ export const ProductPage = () => {
           <span>/</span>
           <Link className='breadcrumps-link' to={`/?categories=${product.category}`} onClick={() => {dispatch(resetFilters())}}>{product.category}</Link>
           <span>/</span>
+          <Link className='breadcrumps-link' to={`/?brands=${product.brand}`} onClick={() => {dispatch(resetFilters())}}>{product.brand}</Link>
+          <span>/</span>
           <Link className='breadcrumps-link' to={`/products/${product.id}`}>{product.title}</Link>
         </div>
         <div className='product__item item-description'>
           <div className='img-description'>
-            <div className='product__item-img item-img-description'>
+            <div className='product__item-img item-img-description big-img'>
               <img src={product.thumbnail} alt="" />
+            </div>
+            <div className='small-img-collection'>
+              {imagesBlocks}
             </div>
           </div>
           <div className='product__item-description item-text'>
@@ -54,4 +64,9 @@ export const ProductPage = () => {
       </div>
     </>
   )
+}
+
+function changeImg(item: string) {
+  const block = document.querySelector('.big-img') as Element;
+  block.innerHTML = `<img src=${item} alt='' />`;
 }
