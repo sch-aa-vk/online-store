@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import './purchaseForm.css';
 import { boolean } from 'yup/lib/locale';
+import { deleteFromCart, getCartProducts } from 'store/slices/cart.slice';
+import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 
 interface IFormValues {
     fullname: string,
@@ -59,6 +61,8 @@ function keyUpHandler(e: React.KeyboardEvent) {
 export function PurchaseForm({onSetModalVisibility}: Props) {
     const [isSuccess, setSuccess] = useState(false);
     const [card, setCard] = useState('');
+    const cartProducts = useAppSelector(getCartProducts);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {
       handleSubmit,
@@ -80,21 +84,21 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
       validationSchema: Yup.object({
         fullname: Yup.string()
           .matches(/^\b[a-z]{3,}\b \b[a-z]{3,}\b/i, 'Should have at least 2 words each length of 3 minimum')
-          .required('Required'),
+          .required('*required'),
         phone: Yup.string()
           .matches(/^\+/, 'Doesn\'t start with +')
           .matches(/^\+\d+$/, 'No numbers or contains non-numeric characters')
           .min(11, 'Must be 11 characters or more')
-          .required('Required'),
+          .required('*required'),
         deliveryAddress: Yup.string()
           .matches(/^\b[a-zA-Z]{5,}\b( \b[a-zA-Z]{5,}\b){2,}/, 'Should have at least 3 words each length of 5 minimum')
-          .required('Required'),
-        email: Yup.string().email('Invalid email address').required('Required'),
+          .required('*required'),
+        email: Yup.string().email('Invalid email address').required('*required'),
         cardNumber: Yup.string()
           .matches(/\d/, 'Contains non-numeric character')
           .min(15, 'Minimum of 15')
           .max(19, 'Maximum of 19')
-          .required('Required'),
+          .required('*required'),
         cardExpiryDate: Yup.string()
           .matches(/^(0[1-9]|1[0-2])/, 'Month must fit to template 01-12')
           .min(5)
@@ -103,26 +107,26 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
           .matches(/\d/, 'Contains non-numeric character')
           .max(3)
           .min(3)
-          .required('Required')
+          .required('*required')
       }),
       onSubmit: (values) => {
         console.log(JSON.stringify(values));
         // values = {"favoriteFood":"ramen","favoritePlace":"mountains"}
         setSuccess(true);
         setTimeout(() => {
-            // TODO: clear the cart here
+            cartProducts.map((product) => dispatch(deleteFromCart(product.id)));
             navigate('/');
         }, 3000);
       },
     });
   
     return (
-      <div className='purchase-form__wrapper'>
-        <div className='purchase-form'>
-            <button onClick={() => onSetModalVisibility(false)}>Close</button>
+      <div className='purchase-form__wrapper' onClick={() => onSetModalVisibility(false)}>
+        <div className='purchase-form' onClick={(e) => e.stopPropagation()}>
         {isSuccess
            ? <div>Заказ успешно оформлен!</div>
-           : <form onSubmit={handleSubmit}>
+           : <form className='form' onSubmit={handleSubmit}>
+                <h2>Personal details</h2>
                 <div>
                     <label htmlFor="favoriteFood">Fullname:</label>
                     <input
@@ -130,6 +134,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                         name="fullname"
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        placeholder="name surname"
                     />
                     {touched.fullname && errors.fullname
                     ? <div>{errors.fullname}</div>
@@ -143,6 +148,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                     name="phone"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder="+(000)-000-00-00"
                 />
         
                 {touched.phone && errors.phone
@@ -157,6 +163,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                     name="deliveryAddress"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder="adress"
                 />
         
                 {touched.deliveryAddress && errors.deliveryAddress
@@ -171,6 +178,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                     name="email"
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder="@xxx.gmail.com"
                 />
         
                 {touched.email && errors.email
@@ -187,6 +195,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                     onInput={(e) => {setCard((e.target as HTMLInputElement).value)}}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder="xxx-xxx-xxxx-xxxx"
                 />
 
                 {touched.cardNumber && errors.cardNumber
@@ -203,6 +212,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                     onKeyUp={(e) => keyUpHandler(e)}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder="xx/xx"
                 />
         
                 {touched.cardExpiryDate && errors.cardExpiryDate
@@ -218,6 +228,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                     onKeyDown={(e) => keyDownHandler(e, 3)}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder="xxx"
                 />
         
                 {touched.cvc && errors.cvc
@@ -225,7 +236,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                 : null}
                 </div>
         
-                <button type="submit">submit</button>
+                <button type="submit">Submit</button>
             </form>}
         </div>
       </div>

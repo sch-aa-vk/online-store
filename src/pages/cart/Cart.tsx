@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from 'store/store.hooks'; 
-import { getCartProducts } from 'store/slices/cart.slice';
+import { getCartProducts, getTotalPrice } from 'store/slices/cart.slice';
 import { Header } from 'components/header/Header'; 
 import { PurchaseForm } from 'components/purchase-form/purchaseForm';
 import { CartForCart } from 'components/cardForCart/CartForCart';
@@ -24,6 +24,10 @@ export const Cart = () => {
   const lastContentIndex = page * contentPerPage;
   const firstContentIndex = page * contentPerPage - contentPerPage;
   const maxPageNumber = Math.ceil(cartProducts.length / contentPerPage);
+
+  const totalPrice = useAppSelector(getTotalPrice);
+  const itemsInCart = cartProducts.map(item => item.amount).reduce((acc, curr) => acc + curr, 0);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     if (contentPerPage) {
@@ -59,16 +63,13 @@ export const Cart = () => {
         <div className='cart-wrapper'>
           <div className='cart-pagination'>
             <p>Products in Cart</p>
-            <label>Limit: <input type="number" min={1} max={cartProducts.length} value={contentPerPage} onChange={(e) => setContentPerPage(+e.target.value)}/></label>
+            <label>Limit: <input type="number" min={1} value={contentPerPage} onChange={(e) => setContentPerPage(+e.target.value)}/></label>
             <div className='cart-pagination-pages'>
               <p>Page:</p>
               <button onClick={() => setPage(page - 1 > 0 ? page - 1 : 1)}>&#60;</button>
               <p>{page}</p>
               <button onClick={() => setPage(page + 1 <= maxPageNumber ? page + 1 : maxPageNumber)}>&#62;</button>
             </div>
-          </div>
-          <div>
-            <button onClick={() => setModalVisibility(true)}>Buy Now</button>
           </div>
           {cartProducts.length === 0 ?
             <>Товары в корзине не найдены</> :
@@ -79,6 +80,17 @@ export const Cart = () => {
               </div>
             ))
           }
+        </div>
+        <div className='cart-summary'>
+          <h2>Summary</h2>
+          <p>Products: <span>{itemsInCart}</span></p>
+          <p>Total: <span>${totalPrice}</span></p>
+          <div>
+            <input type='text' id='promocode' placeholder='Enter promo code' onChange={(e) => setValue(e.target.value)} value={value}/>
+            <button onClick={() => setValue('')}>x</button>
+          </div>
+          <p>** promocodes: "TA", "RS"</p>
+          <button onClick={() => setModalVisibility(true)}>Buy Now</button>
         </div>
       </div>
 
