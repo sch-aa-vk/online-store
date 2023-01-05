@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from 'store/store.hooks'; 
 import { getCartProducts } from 'store/slices/cart.slice';
 import { Header } from 'components/header/Header'; 
+import { PurchaseForm } from 'components/purchase-form/purchaseForm';
 import { CartForCart } from 'components/cardForCart/CartForCart';
 
 import './cart.css';
@@ -14,6 +15,7 @@ export const Cart = () => {
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
 
+  const [isModalVisible, setModalVisibility] = useState(false);
   const [page, setPage] = useState(localStorage['page'] ? JSON.parse(localStorage['page']) : 1);
   localStorage['page'] = JSON.stringify(page);
   const [contentPerPage, setContentPerPage] = useState(localStorage['contentPerPage'] ? JSON.parse(localStorage['contentPerPage']) : 3);
@@ -62,6 +64,9 @@ export const Cart = () => {
               <button onClick={() => setPage(page + 1 <= maxPageNumber ? page + 1 : maxPageNumber)}>&#62;</button>
             </div>
           </div>
+          <div>
+            <button onClick={() => setModalVisibility(true)}>Buy Now</button>
+          </div>
           {cartProducts.length === 0 ?
             <>Товары в корзине не найдены</> :
             cartProducts.slice(firstContentIndex, lastContentIndex).map((product) => (
@@ -73,6 +78,8 @@ export const Cart = () => {
           }
         </div>
       </div>
+
+      {isModalVisible && <PurchaseForm></PurchaseForm>}
     </>
   )
 }
