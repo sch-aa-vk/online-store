@@ -52,10 +52,13 @@ function keyDownHandler(e: React.KeyboardEvent, maxLen: number) {
     }
 }
 
-function keyUpHandler(e: React.KeyboardEvent) {
-    if (e.code !== 'Backspace' && (e.target as HTMLInputElement).value.length === 2) {
+let previousValue = '';
+function addSlash(e: React.SyntheticEvent) {
+    if ((e.target as HTMLInputElement).value.length === 2 
+        && (e.target as HTMLInputElement).value.length > previousValue.length) {
         (e.target as HTMLInputElement).value += '/';
     }
+    previousValue = (e.target as HTMLInputElement).value;
 }
 
 export function PurchaseForm({onSetModalVisibility}: Props) {
@@ -210,7 +213,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                     type="text"
                     name="cardExpiryDate"
                     onKeyDown={(e) => keyDownHandler(e, 5)}
-                    onKeyUp={(e) => keyUpHandler(e)}
+                    onInput={(e) => addSlash(e)}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="xx/xx"
