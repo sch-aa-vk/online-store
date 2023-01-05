@@ -106,12 +106,9 @@ export const Filters: React.FC = () => {
   return (
     <>
       <div className='filters__wrapper'>
-        <div>
-          <RangeSlider max={maxPrice} min={minPrice}></RangeSlider>
-        </div>
         <div className='select-sort__wrapper'>
           <select onChange={(e) => handleSortSelect(e.target.value)} className='select-sort'>
-            <option value="placeholder">Choose sort</option>
+            <option value="choose sort">Choose sort</option>
             <option value="big ratings first">Big ratings first</option>
             <option value="low ratings first">Low ratings first</option>
             <option value="big price first">Big price first</option>
@@ -140,6 +137,13 @@ export const Filters: React.FC = () => {
                 {`${category}  (${products.filter(product => product.category === category).length}/${initialState.filter(product => product.category === category).length})`}
               </label>
             )}
+          </div>
+        </div>
+        <div className='range'>
+          <RangeSlider max={maxPrice} min={minPrice}></RangeSlider>
+          <div className='price-range'>
+            <p>${priceRange[0]}</p>
+            <p>${priceRange[1]}</p>
           </div>
         </div>
         <button onClick={filtersReset}>Reset Filters</button>

@@ -29,6 +29,9 @@ export const Cart = () => {
     if (contentPerPage) {
       queryParams.delete('limit');
       queryParams.append('limit', `${contentPerPage}`);
+      if (Number(queryParams.get('page')) > maxPageNumber && maxPageNumber >= 1) {
+        setPage(maxPageNumber);
+      }
       navigate(`?${queryParams.toString()}`);
     }
   }, [contentPerPage]);
@@ -56,7 +59,7 @@ export const Cart = () => {
         <div className='cart-wrapper'>
           <div className='cart-pagination'>
             <p>Products in Cart</p>
-            <label>Limit: <input type="number" value={contentPerPage} onChange={(e) => setContentPerPage(+e.target.value)}/></label>
+            <label>Limit: <input type="number" min={1} max={cartProducts.length} value={contentPerPage} onChange={(e) => setContentPerPage(+e.target.value)}/></label>
             <div className='cart-pagination-pages'>
               <p>Page:</p>
               <button onClick={() => setPage(page - 1 > 0 ? page - 1 : 1)}>&#60;</button>

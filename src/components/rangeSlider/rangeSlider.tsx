@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { styled } from '@mui/material/styles';
 import { useAppDispatch } from 'store/store.hooks';
 import { setPriceRange } from 'store/slices/filters.slice';
-
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -31,8 +31,8 @@ export function RangeSlider(props: ISliderProps) {
   };
 
   return (
-    <Box sx={{ width: 300 }}>
-      <Slider
+    <Box sx={{ width: 245 }}>
+      <SiteSlider
         max={1749}
         min={10}
         value={value}
@@ -44,3 +44,13 @@ export function RangeSlider(props: ISliderProps) {
     </Box>
   );
 }
+
+const SiteSlider = styled(Slider)(() => ({
+  color: '#db1e02',
+  '& .MuiSlider-thumb': {
+    backgroundColor: 'none',
+    '&:focus, &:hover, &.Mui-active': {
+      boxShadow: 'none'
+    }
+  }
+}));

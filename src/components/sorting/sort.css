@@ -66,6 +66,10 @@
   cursor: pointer;
 }
 
+.label:has( > input:checked) {
+  color: #000000;
+}
+
 .label > input {
   position: absolute;
   top: 7px;
@@ -104,4 +108,23 @@
   color: #fff;
   align-self: center;
   cursor: pointer;
+}
+
+.range {
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
+
+.price-range {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-range > p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #3d3d3d;
 }
