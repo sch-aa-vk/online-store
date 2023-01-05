@@ -82,7 +82,7 @@ export const Cart = () => {
         </div>
       </div>
 
-      {isModalVisible && <PurchaseForm></PurchaseForm>}
+      {isModalVisible && <PurchaseForm onSetModalVisibility={setModalVisibility}></PurchaseForm>}
     </>
   )
 }

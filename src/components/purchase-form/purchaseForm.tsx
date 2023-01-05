@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import './purchaseForm.css';
+import { boolean } from 'yup/lib/locale';
 
 interface IFormValues {
     fullname: string,
@@ -13,6 +14,10 @@ interface IFormValues {
     cardExpiryDate: string,
     cvc: string,
 }
+
+interface Props {
+    onSetModalVisibility: (close: boolean) => void;
+};
 
 function identifyCreditCard(card: string) {
     if (card[0] === '4' && card.length === 19) {
@@ -51,7 +56,7 @@ function keyUpHandler(e: React.KeyboardEvent) {
     }
 }
 
-export function PurchaseForm() {
+export function PurchaseForm({onSetModalVisibility}: Props) {
     const [isSuccess, setSuccess] = useState(false);
     const [card, setCard] = useState('');
     const navigate = useNavigate();
@@ -114,6 +119,7 @@ export function PurchaseForm() {
     return (
       <div className='purchase-form__wrapper'>
         <div className='purchase-form'>
+            <button onClick={() => onSetModalVisibility(false)}>Close</button>
         {isSuccess
            ? <div>Заказ успешно оформлен!</div>
            : <form onSubmit={handleSubmit}>
