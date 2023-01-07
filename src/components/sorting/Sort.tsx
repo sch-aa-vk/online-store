@@ -20,7 +20,13 @@ export const Filters: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
 
-  const handleSortSelect = (option: string) => dispatch(sortProducts(option));
+  const handleSortSelect = (option: string) => {
+    setSelectValue(option);
+    queryParams.delete('sort');
+    queryParams.append('sort', option);
+    navigate(`?${queryParams.toString()}`);
+    dispatch(sortProducts(option));
+  }
 
   const [brandList] = useState(Array.from(new Set(initialState.map(item => item.brand))));
   const [categoryList] = useState(Array.from(new Set(initialState.map(item => item.category))));
@@ -30,6 +36,7 @@ export const Filters: React.FC = () => {
   const [maxPrice, setMaxPrice] = useState(0);
   const [minStock, setMinStock] = useState(0);
   const [maxStock, setMaxStock] = useState(0);
+  const [selectValue, setSelectValue] = useState('choose sort');
 
   const products = useSelector(getProductsSelector);
   const unfilteredProducts = useSelector(getUnfilteredProducts);
@@ -82,6 +89,13 @@ export const Filters: React.FC = () => {
         let stockArr = stock.split('-').map((elem) => Number(elem));
         setStockValue(stockArr);
         dispatch(setStockRange(stockArr));
+      }
+    }
+    if (queryParams.get('sort')) {
+      let sort = queryParams.get('sort');
+      if (sort) {
+        setSelectValue(sort);
+        dispatch(sortProducts(sort));
       }
     }
   }, []);
@@ -149,7 +163,7 @@ export const Filters: React.FC = () => {
     <>
       <div className='filters__wrapper'>
         <div className='select-sort__wrapper'>
-          <select onChange={(e) => handleSortSelect(e.target.value)} className='select-sort'>
+          <select value={selectValue} onChange={(e) => handleSortSelect(e.target.value)} className='select-sort'>
             <option value="choose sort">Choose sort</option>
             <option value="big ratings first">Big ratings first</option>
             <option value="low ratings first">Low ratings first</option>
