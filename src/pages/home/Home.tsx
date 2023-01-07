@@ -20,6 +20,7 @@ export const Home = () => {
   const navigate = useNavigate();
   const products = useSelector(getProductsSelector);
   const [value, setValue] = useState("");
+  const [displayMode, setDisplayMode] = useState('choose display');
 
   useEffect(() => {
     dispatch(setValueChange([value]));
@@ -31,6 +32,22 @@ export const Home = () => {
     queryParams.append('search', newValue);
     navigate(`?${queryParams.toString()}`);
   };
+
+  const returnDisplayModeStyle = (displayMode: string) => {
+    if (displayMode === 'rows') {
+      return 'products__wrapper-rows';
+    } else if (displayMode === 'columns') {
+      return 'products__wrapper-columns';
+    }
+    return '';
+  };
+
+  const handleDisplaySelect = (option: string) => {
+    setDisplayMode(option);
+    queryParams.delete('display');
+    queryParams.append('display', option);
+    navigate(`?${queryParams.toString()}`);
+  }
 
   useEffect(() => {
     if (queryParams.get('search')) {
@@ -49,6 +66,11 @@ export const Home = () => {
         <div className='products__item-wrapper'>
           <div className='priducts-filters'>
             <p className='priducts-found'>Found: {products.length}</p>
+            <select value={displayMode} onChange={(e) => handleDisplaySelect(e.target.value)} className='select-sort'>
+              <option value="choose display" disabled>Choose display</option>
+              <option value="rows">Rows</option>
+              <option value="columns">Columns</option>
+            </select>
             <form>
               <label className='label-filter'>
                 <img src={search} alt="" />
@@ -56,7 +78,7 @@ export const Home = () => {
               </label>
             </form>
           </div>
-          <div className='products__wrapper'>
+          <div className={`products__wrapper ${returnDisplayModeStyle(displayMode)}`}>
             {products.length !== 0 
                 ? products.map(product =>
                     <ProductCard key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>

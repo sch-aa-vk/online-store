@@ -63,3 +63,15 @@
   justify-content: space-between;
   gap: 30px;
 }
+
+.products__wrapper-columns {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.products__wrapper-columns .product__item {
+  width: 100%;
+  box-sizing: border-box;
+}
