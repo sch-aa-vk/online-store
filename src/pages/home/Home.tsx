@@ -55,6 +55,12 @@ export const Home = () => {
       if (search) {
         setValue(search);
       }
+    }
+    if (queryParams.get('display')) {
+      let display = queryParams.get('display');
+      if (display) {
+        setDisplayMode(display);
+      }
     } 
   }, []);
 
