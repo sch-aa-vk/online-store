@@ -35,11 +35,9 @@ export const Home = () => {
 
   const returnDisplayModeStyle = (displayMode: string) => {
     if (displayMode === 'rows') {
-      return 'products__wrapper-rows';
-    } else if (displayMode === 'columns') {
-      return 'products__wrapper-columns';
+      return 'row';
     }
-    return '';
+    return 'column';
   };
 
   const handleDisplaySelect = (option: string) => {
@@ -70,8 +68,8 @@ export const Home = () => {
       <div className='app'>
         <Filters/>
         <div className='products__item-wrapper'>
-          <div className='priducts-filters'>
-            <p className='priducts-found'>Found: {products.length}</p>
+          <div className='products-filters'>
+            <p className='products-found'>Found: {products.length}</p>
             <select value={displayMode} onChange={(e) => handleDisplaySelect(e.target.value)} className='select-sort'>
               <option value="choose display" disabled>Choose display</option>
               <option value="rows">Rows</option>
@@ -84,12 +82,12 @@ export const Home = () => {
               </label>
             </form>
           </div>
-          <div className={`products__wrapper ${returnDisplayModeStyle(displayMode)}`}>
+          <div className='products__wrapper'>
             {products.length !== 0 
                 ? products.map(product =>
-                    <ProductCard key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>
+                    <ProductCard key={product.id} mode={returnDisplayModeStyle(displayMode)} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>
                   )
-                : <>Нет товаров по данным фильтрам</>
+                : <p>Нет товаров по данным фильтрам</p>
             }
           </div>
         </div>

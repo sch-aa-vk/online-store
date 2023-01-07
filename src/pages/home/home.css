@@ -12,7 +12,7 @@
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.85) 100%);
 }
 
-.priducts-filters {
+.products-filters {
   height: 51px;
   padding: 0 35px;
   margin-bottom: 30px;
@@ -25,7 +25,7 @@
   justify-content: space-between;
 }
 
-.priducts-found {
+.products-found {
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 1.5rem;
@@ -64,14 +64,11 @@
   gap: 30px;
 }
 
-.products__wrapper-columns {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.products__wrapper-columns .product__item {
+.products__wrapper > p {
   width: 100%;
-  box-sizing: border-box;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: #000;
+  text-align: center;
 }
