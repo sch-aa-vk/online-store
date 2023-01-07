@@ -12,6 +12,13 @@ import search from 'assets/search.svg';
 import { setValueChange } from 'store/slices/filters.slice';
 import { useAppDispatch } from 'store/store.hooks';
 
+export function returnDisplayModeStyle (displayMode: string) {
+  if (displayMode === 'rows') {
+    return 'row';
+  }
+  return 'column';
+};
+
 export const Home = () => {
 
   const dispatch = useAppDispatch();
@@ -31,13 +38,6 @@ export const Home = () => {
     queryParams.delete('search');
     queryParams.append('search', newValue);
     navigate(`?${queryParams.toString()}`);
-  };
-
-  const returnDisplayModeStyle = (displayMode: string) => {
-    if (displayMode === 'rows') {
-      return 'row';
-    }
-    return 'column';
   };
 
   const handleDisplaySelect = (option: string) => {
