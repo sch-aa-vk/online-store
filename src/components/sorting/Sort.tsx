@@ -45,7 +45,11 @@ export const Filters: React.FC = () => {
   const priceRange = useAppSelector((state) => state.filters.priceRange);
   const stockRange = useAppSelector((state) => state.filters.stockRange);
 
-  const filtersReset = () => dispatch(resetFilters());
+  const filtersReset = () => {
+    dispatch(resetFilters());
+    setStockValue([minStock, maxStock]);
+    setPriceValue([minPrice, maxPrice]);
+  }
 
   useEffect(() => {
     if (queryParams.getAll('categories').length) {
