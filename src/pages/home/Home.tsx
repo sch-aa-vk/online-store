@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Filters } from 'components/sorting/Sort'; 
 import { Header } from 'components/header/Header';
 import { getProductsSelector } from 'store/slices/products.slice'; 
@@ -14,12 +15,31 @@ import { useAppDispatch } from 'store/store.hooks';
 export const Home = () => {
 
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
   const products = useSelector(getProductsSelector);
   const [value, setValue] = useState("");
 
   useEffect(() => {
     dispatch(setValueChange([value]));
   }, [value]);
+
+  const handleChange = (newValue: string) => {
+    setValue(newValue)
+    queryParams.delete('search');
+    queryParams.append('search', newValue);
+    navigate(`?${queryParams.toString()}`);
+  };
+
+  useEffect(() => {
+    if (queryParams.get('search')) {
+      let search = queryParams.get('search');
+      if (search) {
+        setValue(search);
+      }
+    } 
+  }, []);
 
   return(
     <>
@@ -32,7 +52,7 @@ export const Home = () => {
             <form>
               <label className='label-filter'>
                 <img src={search} alt="" />
-                <input className='input' type='text' placeholder='' onChange={(e) => setValue(e.target.value)} />
+                <input className='input' type='text' value={value} placeholder='' onChange={(e) => handleChange(e.target.value)} />
               </label>
             </form>
           </div>
