@@ -7,6 +7,7 @@ const filtersSlice = createSlice({
         brands: [] as Array<string>,
         categories: [] as Array<string>,
         priceRange: [] as Array<number>,
+        stockRange: [] as Array<number>,
         value: [] as Array<string>
     },
     reducers: {
@@ -46,9 +47,13 @@ const filtersSlice = createSlice({
             state.categories = [];
             state.brands = [];
             state.priceRange = [10, 1749];
+            state.stockRange = [2, 150];
         },
         setPriceRange: (state, action: PayloadAction<number[]>) => {
             state.priceRange = action.payload;
+        },
+        setStockRange: (state, action: PayloadAction<number[]>) => {
+            state.stockRange = action.payload;
         },
         setValueChange: (state, action: PayloadAction<string[]>) => {
             state.value = action.payload;
@@ -60,5 +65,5 @@ const filtersSlice = createSlice({
 })
 
 export const filters = (state: RootState) => state.filters;
-export const {brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange, setValueChange} = filtersSlice.actions;
+export const {brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange, setStockRange, setValueChange} = filtersSlice.actions;
 export default filtersSlice.reducer;

@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 import { sortProducts } from 'store/slices/products.slice';
 import { initialState } from 'store/database/products';
 import { getProductsSelector } from 'store/slices/products.slice';
-import { brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange } from 'store/slices/filters.slice';
+import { brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange, setStockRange } from 'store/slices/filters.slice';
 import { IProduct } from 'store/interface/IProduct'; 
 
 import './sort.css';
@@ -26,6 +26,8 @@ export const Filters: React.FC = () => {
   const [categoryList] = useState(Array.from(new Set(initialState.map(item => item.category))));
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+  const [minStock, setMinStock] = useState(0);
+  const [maxStock, setMaxStock] = useState(0);
 
   const products = useSelector(getProductsSelector);
   const [filterItems, setFilterItems] = useState([] as IProduct[]);
@@ -38,6 +40,7 @@ export const Filters: React.FC = () => {
   const selectedBrands = useAppSelector((state) => state.filters.brands);
   const selectedCategories = useAppSelector((state) => state.filters.categories);
   const priceRange = useAppSelector((state) => state.filters.priceRange);
+  const stockRange = useAppSelector((state) => state.filters.stockRange);
 
   const filtersReset = () => dispatch(resetFilters());
 
@@ -56,18 +59,29 @@ export const Filters: React.FC = () => {
         dispatch(setPriceRange(priceArr));
       }
     }
-  }, []);
-
-  useEffect(() => {
-    if (filterItems && filterItems.length) {
-      setMinPrice(filterItems.reduce((prev, cur) => prev.price < cur.price ? prev : cur).price);
-      setMaxPrice(filterItems.reduce((prev, cur) => prev.price > cur.price ? prev : cur).price);
+    if (queryParams.get('stock')) {
+      let stock = queryParams.get('stock');
+      let stockArr: number[];
+      if (stock) {
+        stockArr = stock.split('-').map((elem) => +elem);
+        dispatch(setStockRange(stockArr));
+      }
     }
-  }, [filterItems]);
+    if (products && products.length) {
+      setMinPrice(products.reduce((prev, cur) => prev.price < cur.price ? prev : cur).price);
+      setMaxPrice(products.reduce((prev, cur) => prev.price > cur.price ? prev : cur).price);
+      setMinStock(products.reduce((prev, cur) => prev.stock < cur.stock ? prev : cur).stock);
+      setMaxStock(products.reduce((prev, cur) => prev.stock > cur.stock ? prev : cur).stock);
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(setPriceRange([minPrice, maxPrice]));
   }, [minPrice, maxPrice]);
+
+  useEffect(() => {
+    dispatch(setStockRange([minStock, maxStock]));
+  }, [minStock, maxStock]);
 
   useEffect(() => {
     if (selectedBrands) {
@@ -100,8 +114,18 @@ export const Filters: React.FC = () => {
   }, [priceRange]);
 
   useEffect(() => {
+    queryParams.delete('stock');
+    if (stockRange && stockRange.length) {
+      if (stockRange[0] !== 0 && stockRange[1] !== 0) {
+        queryParams.append('stock', stockRange.join('-'));
+        navigate(`?${queryParams.toString()}`);
+      }
+    }
+  }, [stockRange]);
+
+  useEffect(() => {
     setFilterItems(products);
-  }, [selectedBrands, selectedCategories, priceRange, products]);
+  }, [selectedBrands, selectedCategories, priceRange, stockRange, products]);
 
   return (
     <>
@@ -140,10 +164,17 @@ export const Filters: React.FC = () => {
           </div>
         </div>
         <div className='range'>
-          <RangeSlider max={maxPrice} min={minPrice}></RangeSlider>
+          <RangeSlider max={maxPrice} min={minPrice} why={'price'}></RangeSlider>
           <div className='price-range'>
             <p>${priceRange[0]}</p>
             <p>${priceRange[1]}</p>
+          </div>
+        </div>
+        <div className='range'>
+          <RangeSlider max={maxStock} min={minStock} why={'stock'}></RangeSlider>
+          <div className='price-range'>
+            <p>{stockRange[0]}</p>
+            <p>{stockRange[1]}</p>
           </div>
         </div>
         <button onClick={filtersReset}>Reset Filters</button>

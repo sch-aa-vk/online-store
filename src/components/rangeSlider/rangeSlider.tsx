@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 import { useAppDispatch } from 'store/store.hooks';
-import { setPriceRange } from 'store/slices/filters.slice';
+import { setPriceRange, setStockRange } from 'store/slices/filters.slice';
 
 function valuetext(value: number) {
   return `${value}°C`;
@@ -12,6 +12,7 @@ function valuetext(value: number) {
 interface ISliderProps {
     max: number,
     min: number,
+    why: string,
 }
 
 export function RangeSlider(props: ISliderProps) {
@@ -26,18 +27,22 @@ export function RangeSlider(props: ISliderProps) {
     setValue(newValue as number[]);
   };
 
-  const handleChangeCommitted = (event: React.SyntheticEvent | Event, value: number | Array<number>) => {
-    dispatch(setPriceRange(value as number[]));
+  const handleChangeCommitted = (event: React.SyntheticEvent | Event, value: number | Array<number>, why: string) => {
+    if (why === 'price') {
+        dispatch(setPriceRange(value as number[]));
+    } else if (why === 'stock') {
+        dispatch(setStockRange(value as number[]));
+    }
   };
 
   return (
     <Box sx={{ width: 245 }}>
       <SiteSlider
-        max={1749}
-        min={10}
+        max={props.max}
+        min={props.min}
         value={value}
         onChange={handleChange}
-        onChangeCommitted={handleChangeCommitted}
+        onChangeCommitted={(e, value) => handleChangeCommitted(e, value, props.why)}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
       />

@@ -40,9 +40,9 @@ const productsSlice = createSlice({
 
 export const { addProduct, sortProducts } = productsSlice.actions;
 
-// TODO: add price and stock in the future
 let filteredProducts = (state: RootState) => {
   const hasRange = state.filters.priceRange.length && state.filters.priceRange[1] !== 0;
+  const hasStockRange = state.filters.stockRange.length && state.filters.stockRange[1] !== 0;
   const hasBrands = state.filters.brands.length;
   const hasCategories = state.filters.categories.length;
   const hasValue = state.filters.value.length;
@@ -65,6 +65,9 @@ let filteredProducts = (state: RootState) => {
   }
   if (hasRange) {
     filtered = filtered.filter((product) => product.price >= state.filters.priceRange[0] && product.price <= state.filters.priceRange[1]);
+  }
+  if (hasStockRange) {
+    filtered = filtered.filter((product) => product.stock >= state.filters.stockRange[0] && product.stock <= state.filters.stockRange[1]);
   }
 
   return filtered;
