@@ -37,6 +37,7 @@ export const Filters: React.FC = () => {
   const [minStock, setMinStock] = useState(0);
   const [maxStock, setMaxStock] = useState(0);
   const [selectValue, setSelectValue] = useState('choose sort');
+  const [copyURLText, setCopyURLText] = useState('Copy URL');
 
   const products = useSelector(getProductsSelector);
   const unfilteredProducts = useSelector(getUnfilteredProducts);
@@ -56,6 +57,14 @@ export const Filters: React.FC = () => {
     dispatch(resetFilters());
     setStockValue([minStock, maxStock]);
     setPriceValue([minPrice, maxPrice]);
+  }
+
+  const copyURLHandler = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopyURLText('Copied!');
+    setTimeout(() => {
+      setCopyURLText('Copy URL');
+    }, 1000);
   }
 
   useEffect(() => {
@@ -210,7 +219,7 @@ export const Filters: React.FC = () => {
           </div>
         </div>
         <button onClick={filtersReset}>Reset Filters</button>
-        <button onClick={() => {navigator.clipboard.writeText(window.location.href)}}>Copy URL</button>
+        <button onClick={copyURLHandler}>{copyURLText}</button>
       </div>
     </>
   )
