@@ -109,7 +109,7 @@
   text-align: center;
 }
 
-.cart-summary > p {
+.cart-summary p {
   font-family: 'Jost', sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
@@ -120,13 +120,13 @@
   color: rgba(219, 30, 2, 0.7);
 }
 
-.cart-summary div {
+.cart-summary-input {
   position: relative;
   width: 100%;
   height: 40px;
 }
 
-.cart-summary div input {
+.cart-summary-input input {
   width: 100%;
   height: 100%;
   border-radius: 5px;
@@ -139,11 +139,11 @@
   box-sizing: border-box;
 }
 
-.cart-summary div input:not(:placeholder-shown) ~ button {
+.cart-summary-input input:not(:placeholder-shown) ~ button {
   display: block;
 }
 
-.cart-summary div button {
+.cart-summary-input button {
   display: none;
   position: absolute;
   top: 8px;
@@ -156,7 +156,7 @@
   cursor: pointer;
 }
 
-.cart-summary div button:hover {
+.cart-summary-input button:hover {
   color: red;
 }
 
@@ -170,4 +170,56 @@
   font-weight: 300;
   font-size: 1.2rem;
   color: #fff;
+  cursor: pointer;
+}
+
+.promocode-active {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 0.5rem;
+  border: 1px dotted rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.promocode-active h2 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.1rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.promocode-block {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.promocode-block p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.promocode-block button {
+  display: block;
+  height: 30px;
+  width: max-content;
+  padding: 0 0.5rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
 }

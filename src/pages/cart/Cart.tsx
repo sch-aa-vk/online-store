@@ -15,7 +15,6 @@ export const Cart = () => {
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
 
-  const [isModalVisible, setModalVisibility] = useState(false);
   const [page, setPage] = useState(localStorage['page'] ? JSON.parse(localStorage['page']) : 1);
   localStorage['page'] = JSON.stringify(page);
   const [contentPerPage, setContentPerPage] = useState(localStorage['contentPerPage'] ? JSON.parse(localStorage['contentPerPage']) : 3);
@@ -24,10 +23,6 @@ export const Cart = () => {
   const lastContentIndex = page * contentPerPage;
   const firstContentIndex = page * contentPerPage - contentPerPage;
   const maxPageNumber = Math.ceil(cartProducts.length / contentPerPage);
-
-  const totalPrice = useAppSelector(getTotalPrice);
-  const itemsInCart = cartProducts.map(item => item.amount).reduce((acc, curr) => acc + curr, 0);
-  const [value, setValue] = useState("");
 
   useEffect(() => {
     if (contentPerPage) {
@@ -81,19 +76,67 @@ export const Cart = () => {
             ))
           }
         </div>
-        <div className='cart-summary'>
-          <h2>Summary</h2>
-          <p>Products: <span>{itemsInCart}</span></p>
-          <p>Total: <span>${totalPrice}</span></p>
-          <div>
-            <input type='text' id='promocode' placeholder='Enter promo code' onChange={(e) => setValue(e.target.value)} value={value}/>
-            <button onClick={() => setValue('')}>x</button>
-          </div>
-          <p>** promocodes: "TA", "RS"</p>
-          <button onClick={() => setModalVisibility(true)}>Buy Now</button>
-        </div>
+        {CardSummary()};
       </div>
+    </>
+  )
+}
 
+function CardSummary() {
+
+  const cartProducts = useAppSelector(getCartProducts);
+
+  const totalPrice = useAppSelector(getTotalPrice);
+  const itemsInCart = cartProducts.map(item => item.amount).reduce((acc, curr) => acc + curr, 0);
+  const [isModalVisible, setModalVisibility] = useState(false);
+
+  const [value, setValue] = useState("");
+  const [promocodeTA, setPromocodeTA] = useState(false);
+  const [promocodeRS, setPromocodeRS] = useState(false);
+  const [activeTA, setActiveTA] = useState(false);
+  const [activeRS, setActiveRS] = useState(false);
+  const [discount, setDiscount] = useState(1);
+
+  useEffect(() => {
+    switch (value) {
+      case('TA'):
+        setPromocodeTA(true);
+        break;
+      case('RS'): 
+        setPromocodeRS(true);
+        break;
+      default:
+        setPromocodeTA(false);
+        setPromocodeRS(false);
+        break;
+    }
+  })
+
+  return (
+    <>
+      <div className='cart-summary'>
+        <h2>Summary</h2>
+        <p>Products: <span>{itemsInCart}</span></p>
+        <div className='promocode-container'>
+          <p style={{textDecoration: `${activeRS || activeTA ? 'line-through' : ''}`}}>Total: <span>${totalPrice}</span></p>
+          {activeRS || activeTA ? <p>Total: <span>${Math.ceil(totalPrice * discount)}</span></p> : <></>}
+        </div>
+        {activeRS || activeTA ?
+        <div className='promocode-active'>
+          <h2>Active Promocodes</h2>
+          {activeTA ? <div className='promocode-block'><p>10% discount 'TA'</p><button onClick={() => {setActiveTA(false); setDiscount(discount + 0.1);}}>remove</button></div> : <></>}
+          {activeRS ? <div className='promocode-block'><p>10% discount 'RS'</p><button onClick={() => {setActiveRS(false); setDiscount(discount + 0.1);}}>remove</button></div> : <></>}
+        </div>
+        : <></>}
+        <div className='cart-summary-input'>
+          <input type='text' id='promocode' placeholder='Enter promo code' onChange={(e) => setValue(e.target.value)} value={value}/>
+          <button onClick={() => setValue('')}>x</button>
+        </div>
+        {promocodeTA ? (activeTA ? <></> : <div className='promocode-block'><p>10% discount 'TA'</p><button onClick={() => {setActiveTA(true); setDiscount(discount - 0.1);}}>add</button></div>) : <></>}
+        {promocodeRS ? (activeRS ? <></> : <div className='promocode-block'><p>10% discount 'RS'</p><button onClick={() => {setActiveRS(true); setDiscount(discount - 0.1);}}>add</button></div>) : <></>}
+        <p>** promocodes: "TA", "RS"</p>
+        <button onClick={() => setModalVisibility(true)}>Buy Now</button>
+      </div>
       {isModalVisible && <PurchaseForm onSetModalVisibility={setModalVisibility}></PurchaseForm>}
     </>
   )

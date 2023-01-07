@@ -106,7 +106,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
           .matches(/^(0[1-9]|1[0-2])/, 'Month must fit to template 01-12')
           .min(5)
           .max(5)
-          .required('Required'),
+          .required('*required'),
         cvc: Yup.string()
           .matches(/\d/, 'Contains non-numeric character')
           .max(3)
