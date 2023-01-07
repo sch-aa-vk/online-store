@@ -7,6 +7,7 @@ import { initialState } from 'store/database/products';
 import { getProductsSelector, getUnfilteredProducts } from 'store/slices/products.slice';
 import { brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange, setStockRange } from 'store/slices/filters.slice';
 import { IProduct } from 'store/interface/IProduct'; 
+import { setValueChange } from 'store/slices/filters.slice';
 
 import './sort.css';
 
@@ -55,8 +56,12 @@ export const Filters: React.FC = () => {
 
   const filtersReset = () => {
     dispatch(resetFilters());
+    dispatch(setValueChange(['']));
     setStockValue([minStock, maxStock]);
     setPriceValue([minPrice, maxPrice]);
+    setSelectValue('choose sort');
+    dispatch(sortProducts('choose sort'));
+    navigate('/');
   }
 
   const copyURLHandler = () => {

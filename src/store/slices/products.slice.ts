@@ -12,6 +12,9 @@ const productsSlice = createSlice({
     },
     sortProducts: (state, action: PayloadAction<string>) => {
       switch(action.payload) {
+        case 'choose sort': 
+          return initialState;
+          break;
         case 'big ratings first':
           state.sort((a, b) => b.rating - a.rating);
           break;
