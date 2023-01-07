@@ -12,6 +12,7 @@ function valuetext(value: number) {
 interface ISliderProps {
     max: number,
     min: number,
+    value: number[],
     why: string,
 }
 
@@ -20,8 +21,8 @@ export function RangeSlider(props: ISliderProps) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setValue([props.min, props.max] as number[]);
-  }, [props.min, props.max]);
+    setValue(props.value as number[]);
+  }, [props.value]);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);

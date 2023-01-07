@@ -57,9 +57,6 @@ const filtersSlice = createSlice({
         },
         setValueChange: (state, action: PayloadAction<string[]>) => {
             state.value = action.payload;
-            if (action.payload = ['']) {
-                state.priceRange = [10, 1749];
-            }
         }
     }
 })

@@ -74,5 +74,6 @@ let filteredProducts = (state: RootState) => {
 }
 
 export const getProductsSelector = filteredProducts;
+export const getUnfilteredProducts = (state: RootState) => state.products;
 
 export default productsSlice.reducer;
