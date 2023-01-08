@@ -21,7 +21,6 @@ const filtersSlice = createSlice({
                 if (index !== -1) {
                     state.brands.splice(index, 1);
                 }
-                state.priceRange = [10, 1749];
             }
         },
         categoryHandler: (state, action: PayloadAction<{category: string, checked: boolean}>) => {
@@ -34,7 +33,6 @@ const filtersSlice = createSlice({
                 if (index !== -1) {
                     state.categories.splice(index, 1);
                 }
-                state.priceRange = [10, 1749];
             }
         },
         setBrands: (state, action: PayloadAction<string[]>) => {
@@ -46,8 +44,7 @@ const filtersSlice = createSlice({
         resetFilters: (state) => {
             state.categories = [];
             state.brands = [];
-            state.priceRange = [10, 1749];
-            state.stockRange = [2, 150];
+            state.value = [''];
         },
         setPriceRange: (state, action: PayloadAction<number[]>) => {
             state.priceRange = action.payload;
