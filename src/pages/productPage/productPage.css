@@ -98,11 +98,16 @@
   flex-wrap: wrap;
 }
 
+.buttons-container {
+  align-self: flex-end;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
 .cart-description {
-  position: absolute;
   cursor: pointer;
-  right: 2rem;
-  bottom: 2rem;
   width: max-content;
   height: 50px;
   padding: 0 1rem;

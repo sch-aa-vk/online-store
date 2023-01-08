@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import './purchaseForm.css';
-import { boolean } from 'yup/lib/locale';
 import { deleteFromCart, getCartProducts } from 'store/slices/cart.slice';
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 
@@ -18,7 +17,7 @@ interface IFormValues {
 }
 
 interface Props {
-    onSetModalVisibility: (close: boolean) => void;
+  onSetModalVisibility: (close: boolean) => void;
 };
 
 function identifyCreditCard(card: string) {

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Header } from 'components/header/Header'; 
 import { IProduct } from 'store/interface/IProduct'; 
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 import { addToCart, deleteFromCart, getCartProducts } from 'store/slices/cart.slice';
 import { initialState } from 'store/database/products';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { resetFilters } from 'store/slices/filters.slice';
 
 import './productPage.css';
@@ -23,12 +23,22 @@ export const ProductPage = () => {
       <img src={item} alt='' />
     </div>
   )
+
   const addToCartHandler = (product: IProduct) => {
     if (productInCard) {
       dispatch(deleteFromCart(product.id));
     } else {
       dispatch(addToCart(product));
     }
+  }
+
+  const navigate = useNavigate();
+
+  const buyNowHandler = (product: IProduct) => {
+    if (!productInCard) {
+      dispatch(addToCart(product));
+    }
+    navigate('/cart?form=true');
   }
 
   return(
@@ -63,10 +73,15 @@ export const ProductPage = () => {
             <p>Stock: <span>{product.stock}</span></p>
             <p>Description: <span>{product.description}</span></p>
           </div>
-          <button className='product__item-cart cart-description' onClick={() => addToCartHandler(product)} style={{background: `${productInCard ? '#9e9492' : '#db1e02'}`}}>
-            <p>{productInCard ? 'Remove From Cart' : 'Add To Cart'}</p>
-            <img src={cart} alt="cart"/>
-          </button>
+          <div className='buttons-container'>
+            <button className='product__item-cart cart-description' onClick={() => buyNowHandler(product)} style={{background: '#db1e02'}}>
+              <p>Buy now</p>
+            </button>
+            <button className='product__item-cart cart-description' onClick={() => addToCartHandler(product)} style={{background: `${productInCard ? '#9e9492' : '#db1e02'}`}}>
+              <p>{productInCard ? 'Remove From Cart' : 'Add To Cart'}</p>
+              <img src={cart} alt="cart"/>
+            </button>
+          </div>
         </div>
       </div>
     </>

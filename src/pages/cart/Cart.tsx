@@ -6,7 +6,7 @@ import { PurchaseForm } from 'components/purchase-form/purchaseForm';
 import { CartForCart } from 'components/cardForCart/CartForCart';
 
 import './cart.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 export const Cart = () => {
 
@@ -103,6 +103,28 @@ function CardSummary() {
   const [discount, setDiscount] = useState(localStorage['discount'] ? +localStorage['discount'] : 1);
   localStorage['discount'] = JSON.stringify(discount);
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams(); 
+  const boolean = JSON.parse(searchParams.get('form') as string);
+  const [form, setForm] = useState(boolean);
+
+  useEffect(() => {
+    if (form) {
+      setModalVisibility(true);
+      setForm(false);
+    }
+  })
+
+  useEffect(() => {
+    queryParams.delete('form');
+    if (isModalVisible) {
+      queryParams.append('form', `${isModalVisible}`);
+    }
+    navigate(`?${queryParams.toString()}`, {replace: isModalVisible});
+  }, [isModalVisible]);
+
   useEffect(() => {
     switch (value) {
       case('TA'):
@@ -116,9 +138,7 @@ function CardSummary() {
         setPromocodeRS(false);
         break;
     }
-  })
-
-  
+  })  
 
   return (
     <>
