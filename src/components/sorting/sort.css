@@ -112,8 +112,8 @@
 
 .range {
   align-items: center;
-  justify-content: center;
-  height: 80px;
+  justify-content: flex-end;
+  height: 110px;
 }
 
 .price-range {
