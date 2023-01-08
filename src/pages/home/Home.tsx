@@ -37,14 +37,14 @@ export const Home = () => {
     setValue(newValue)
     queryParams.delete('search');
     queryParams.append('search', newValue);
-    navigate(`?${queryParams.toString()}`);
+    navigate(`?${queryParams.toString()}`, {replace: true});
   };
 
   const handleDisplaySelect = (option: string) => {
     setDisplayMode(option);
     queryParams.delete('display');
     queryParams.append('display', option);
-    navigate(`?${queryParams.toString()}`);
+    navigate(`?${queryParams.toString()}`, {replace: true});
   }
 
   useEffect(() => {

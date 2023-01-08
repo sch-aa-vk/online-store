@@ -25,7 +25,7 @@ export const Filters: React.FC = () => {
     setSelectValue(option);
     queryParams.delete('sort');
     queryParams.append('sort', option);
-    navigate(`?${queryParams.toString()}`);
+    navigate(`?${queryParams.toString()}`, {replace: true});
     dispatch(sortProducts(option));
   }
 
@@ -61,7 +61,7 @@ export const Filters: React.FC = () => {
     setPriceValue([minPrice, maxPrice]);
     setSelectValue('choose sort');
     dispatch(sortProducts('choose sort'));
-    navigate('/');
+    navigate('/', {replace: true});
   }
 
   const copyURLHandler = () => {
@@ -135,7 +135,7 @@ export const Filters: React.FC = () => {
       for (let i = 0; i < selectedBrands.length; i++) {
         queryParams.append('brands', selectedBrands[i]);
       }
-      navigate(`?${queryParams.toString()}`);
+      navigate(`?${queryParams.toString()}`, {replace: true});
     }
   }, [selectedBrands]);
 
@@ -145,7 +145,7 @@ export const Filters: React.FC = () => {
       for (let i = 0; i < selectedCategories.length; i++) {
         queryParams.append('categories', selectedCategories[i]);
       }
-      navigate(`?${queryParams.toString()}`);
+      navigate(`?${queryParams.toString()}`, {replace: true});
     }
   }, [selectedCategories]);
 
@@ -154,7 +154,7 @@ export const Filters: React.FC = () => {
     if (priceRange && priceRange.length) {
       if (priceRange[0] !== 0 && priceRange[1] !== 0) {
         queryParams.append('price', priceRange.join('-'));
-        navigate(`?${queryParams.toString()}`);
+        navigate(`?${queryParams.toString()}`, {replace: true});
       }
     }
   }, [priceRange]);
@@ -164,7 +164,7 @@ export const Filters: React.FC = () => {
     if (stockRange && stockRange.length) {
       if (stockRange[0] !== 0 && stockRange[1] !== 0) {
         queryParams.append('stock', stockRange.join('-'));
-        navigate(`?${queryParams.toString()}`);
+        navigate(`?${queryParams.toString()}`, {replace: true});
       }
     }
   }, [stockRange]);

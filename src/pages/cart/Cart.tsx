@@ -31,7 +31,7 @@ export const Cart = () => {
       if (Number(queryParams.get('page')) > maxPageNumber && maxPageNumber >= 1) {
         setPage(maxPageNumber);
       }
-      navigate(`?${queryParams.toString()}`);
+      navigate(`?${queryParams.toString()}`, {replace: true});
     }
   }, [contentPerPage]);
 
@@ -39,7 +39,7 @@ export const Cart = () => {
     if (page) {
       queryParams.delete('page');
       queryParams.append('page', `${page}`);
-      navigate(`?${queryParams.toString()}`);
+      navigate(`?${queryParams.toString()}`, {replace: true});
     }
   }, [page]);
 
