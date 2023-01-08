@@ -10,7 +10,7 @@ import './home.css';
 
 import search from 'assets/search.svg';
 import { setValueChange } from 'store/slices/filters.slice';
-import { useAppDispatch } from 'store/store.hooks';
+import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 
 export function returnDisplayModeStyle (displayMode: string) {
   if (displayMode === 'rows') {
@@ -26,15 +26,11 @@ export const Home = () => {
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
   const products = useSelector(getProductsSelector);
-  const [value, setValue] = useState("");
   const [displayMode, setDisplayMode] = useState('choose display');
-
-  useEffect(() => {
-    dispatch(setValueChange([value]));
-  }, [value]);
+  const [searchValue] = useAppSelector((state) => state.filters.value);
 
   const handleChange = (newValue: string) => {
-    setValue(newValue)
+    dispatch(setValueChange([newValue]));
     queryParams.delete('search');
     queryParams.append('search', newValue);
     navigate(`?${queryParams.toString()}`, {replace: true});
@@ -51,7 +47,7 @@ export const Home = () => {
     if (queryParams.get('search')) {
       let search = queryParams.get('search');
       if (search) {
-        setValue(search);
+        dispatch(setValueChange([search]));
       }
     }
     if (queryParams.get('display')) {
@@ -78,7 +74,7 @@ export const Home = () => {
             <form>
               <label className='label-filter'>
                 <img src={search} alt="" />
-                <input className='input' type='text' value={value} placeholder='' onChange={(e) => handleChange(e.target.value)} />
+                <input className='input' type='text' value={searchValue} placeholder='' onChange={(e) => handleChange(e.target.value)} />
               </label>
             </form>
           </div>

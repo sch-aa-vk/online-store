@@ -56,9 +56,10 @@ export const Filters: React.FC = () => {
 
   const filtersReset = () => {
     dispatch(resetFilters());
-    dispatch(setValueChange(['']));
     setStockValue([minStock, maxStock]);
     setPriceValue([minPrice, maxPrice]);
+    dispatch(setPriceRange([minPrice, maxPrice]));
+    dispatch(setStockRange([minStock, maxStock]));
     setSelectValue('choose sort');
     dispatch(sortProducts('choose sort'));
     navigate('/', {replace: true});
