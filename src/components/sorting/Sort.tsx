@@ -7,7 +7,6 @@ import { initialState } from 'store/database/products';
 import { getProductsSelector, getUnfilteredProducts } from 'store/slices/products.slice';
 import { brandHandler, categoryHandler, resetFilters, setBrands, setCategories, setPriceRange, setStockRange } from 'store/slices/filters.slice';
 import { IProduct } from 'store/interface/IProduct'; 
-import { setValueChange } from 'store/slices/filters.slice';
 
 import './sort.css';
 
@@ -214,16 +213,16 @@ export const Filters: React.FC = () => {
           <h2>price range</h2>
           <RangeSlider max={maxPrice} min={minPrice} value={priceValue} why={'price'}></RangeSlider>
           <div className='price-range'>
-            <p>${priceRange[0]}</p>
-            <p>${priceRange[1]}</p>
+            <p>${priceRange[0] || minPrice}</p>
+            <p>${priceRange[1] || maxPrice}</p>
           </div>
         </div>
         <div className='range'>
           <h2>stock range</h2>
           <RangeSlider max={maxStock} min={minStock} value={stockValue} why={'stock'}></RangeSlider>
           <div className='price-range'>
-            <p>{stockRange[0]}</p>
-            <p>{stockRange[1]}</p>
+            <p>{stockRange[0] || minStock}</p>
+            <p>{stockRange[1] || maxStock}</p>
           </div>
         </div>
         <button onClick={filtersReset}>Reset Filters</button>

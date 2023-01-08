@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { Filters } from 'components/sorting/Sort'; 
 import { Header } from 'components/header/Header';
 import { getProductsSelector } from 'store/slices/products.slice'; 
@@ -57,6 +57,20 @@ export const Home = () => {
       }
     } 
   }, []);
+
+  const [searchParams] = useSearchParams(); 
+  const params = ['brands', 'categories', 'display', 'price', 'search', 'stock'];
+  const keys = Array.from(searchParams.keys());
+
+  function compare(a1: Array<string>, a2: Array<string>) {
+    return a1.filter((item) => a2.indexOf(item) < 0);
+  }
+
+  useEffect(() => {
+    if (compare(keys, params).length) {
+      navigate('/page404');
+    }
+  })
 
   return(
     <>

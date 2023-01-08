@@ -11,9 +11,6 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 export const Cart = () => {
 
   const cartProducts = useAppSelector(getCartProducts);
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const navigate = useNavigate();
 
   const [page, setPage] = useState(localStorage['page'] ? JSON.parse(localStorage['page']) : 1);
   localStorage['page'] = JSON.stringify(page);
@@ -25,31 +22,22 @@ export const Cart = () => {
   const maxPageNumber = Math.ceil(cartProducts.length / contentPerPage);
 
   useEffect(() => {
-    if (contentPerPage) {
-      queryParams.delete('limit');
-      queryParams.append('limit', `${contentPerPage}`);
-      if (Number(queryParams.get('page')) > maxPageNumber && maxPageNumber >= 1) {
-        setPage(maxPageNumber);
-      }
-      navigate(`?${queryParams.toString()}`, {replace: true});
+    if (JSON.parse(localStorage['contentPerPage']) > maxPageNumber && maxPageNumber >= 1) {
+      setPage(maxPageNumber);
     }
-  }, [contentPerPage]);
+    if (JSON.parse(localStorage['page']) > maxPageNumber && maxPageNumber >= 1) {
+      setPage(maxPageNumber);
+    }
+  })
 
   useEffect(() => {
-    if (page) {
-      queryParams.delete('page');
-      queryParams.append('page', `${page}`);
-      navigate(`?${queryParams.toString()}`, {replace: true});
+    if (JSON.parse(localStorage['page']) > maxPageNumber && maxPageNumber >= 1) {
+      setPage(maxPageNumber);
     }
-  }, [page]);
-
-  useEffect(() => {
-    if (cartProducts) {
-      if (Number(queryParams.get('page')) > maxPageNumber && maxPageNumber >= 1) {
-        setPage(maxPageNumber);
-      }
+    if (JSON.parse(localStorage['contentPerPage']) > maxPageNumber && maxPageNumber >= 1) {
+      setPage(maxPageNumber);
     }
-  }, [cartProducts]);
+  }, []);
 
   return (
     <>
@@ -124,6 +112,14 @@ function CardSummary() {
     }
     navigate(`?${queryParams.toString()}`, {replace: isModalVisible});
   }, [isModalVisible]);
+
+  const keys = Array.from(searchParams.keys());
+
+  useEffect(() => {
+    if (keys.find((item) => item !== 'form')) {
+      navigate('/page404');
+    }
+  })
 
   useEffect(() => {
     switch (value) {
