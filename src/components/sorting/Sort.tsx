@@ -211,17 +211,19 @@ export const Filters: React.FC = () => {
           </div>
         </div>
         <div className='range'>
+          <h2>price range</h2>
           <RangeSlider max={maxPrice} min={minPrice} value={priceValue} why={'price'}></RangeSlider>
           <div className='price-range'>
-            <p>${minPrice}</p>
-            <p>${maxPrice}</p>
+            <p>${priceRange[0]}</p>
+            <p>${priceRange[1]}</p>
           </div>
         </div>
         <div className='range'>
+          <h2>stock range</h2>
           <RangeSlider max={maxStock} min={minStock} value={stockValue} why={'stock'}></RangeSlider>
           <div className='price-range'>
-            <p>{minStock}</p>
-            <p>{maxStock}</p>
+            <p>{stockRange[0]}</p>
+            <p>{stockRange[1]}</p>
           </div>
         </div>
         <button onClick={filtersReset}>Reset Filters</button>
