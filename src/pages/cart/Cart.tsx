@@ -93,9 +93,15 @@ function CardSummary() {
   const [value, setValue] = useState("");
   const [promocodeTA, setPromocodeTA] = useState(false);
   const [promocodeRS, setPromocodeRS] = useState(false);
-  const [activeTA, setActiveTA] = useState(false);
-  const [activeRS, setActiveRS] = useState(false);
-  const [discount, setDiscount] = useState(1);
+
+  const [activeTA, setActiveTA] = useState(localStorage['activeTA'] ? JSON.parse(localStorage['activeTA']) : false);
+  localStorage['activeTA'] = JSON.stringify(activeTA);
+
+  const [activeRS, setActiveRS] = useState(localStorage['activeRS'] ? JSON.parse(localStorage['activeRS']) : false);
+  localStorage['activeRS'] = JSON.stringify(activeRS);
+
+  const [discount, setDiscount] = useState(localStorage['discount'] ? +localStorage['discount'] : 1);
+  localStorage['discount'] = JSON.stringify(discount);
 
   useEffect(() => {
     switch (value) {
@@ -111,6 +117,8 @@ function CardSummary() {
         break;
     }
   })
+
+  
 
   return (
     <>
