@@ -60,7 +60,6 @@ export const Home = () => {
 
   return(
     <>
-      <Header />
       <div className='app'>
         <Filters/>
         <div className='products__item-wrapper'>

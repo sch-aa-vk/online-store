@@ -42,7 +42,6 @@ export const ProductPage = () => {
 
   return(
     <>
-      <Header/>
       <div className='product_page'>
         <div className='breadcrumps'>
           <Link className='breadcrumps-link' to={"/"} onClick={() => {dispatch(resetFilters())}}>Home</Link>

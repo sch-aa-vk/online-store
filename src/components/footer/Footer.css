@@ -1,0 +1,21 @@
+.footer {
+  width: 100vw;
+  height: 81px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%,  #FFFFFF 100%);
+  box-sizing: border-box;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer > p {
+  font-family: 'Jaldi', sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  color: black;
+}
+
+.footer-img {
+  height: 40px;
+}

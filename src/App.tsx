@@ -7,18 +7,22 @@ import { Home } from 'pages/home/Home';
 import { Cart } from 'pages/cart/Cart'; 
 import { ProductPage } from 'pages/productPage/ProductPage';
 import { Page404 } from 'pages/page404/Page404';
+import { Footer } from 'components/footer/Footer';
+import { Header } from 'components/header/Header';
 
 import './app.css';
 
 export const App = () => {
   return (
     <Provider store={store}>
+      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/products/:productId" element={<ProductPage />} />
         <Route path='*' element={<Page404 />} />
       </Routes>
+      <Footer/>
     </Provider>
   );
 }

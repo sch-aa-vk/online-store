@@ -29,7 +29,6 @@ export const Cart = () => {
 
   return (
     <>
-      <Header/>
       <div className='cart'>
         <div className='cart-wrapper'>
           <div className='cart-pagination'>
