@@ -7,6 +7,8 @@ import './header.css';
 import logo from 'assets/logo.svg';
 import cart from 'assets/cart.svg';
 
+// TODO: move Header to App.tsx
+
 export const Header = () => {
 
   const cartProducts = useAppSelector(getCartProducts);
