@@ -42,15 +42,17 @@ export const Cart = () => {
               <button onClick={() => setPage(page + 1 <= maxPageNumber ? page + 1 : maxPageNumber)}>&#62;</button>
             </div>
           </div>
-          {cartProducts.length === 0 ?
-            <>Товары в корзине не найдены</> :
-            cartProducts.slice(firstContentIndex, lastContentIndex).map((product) => (
-              <div className='cart-item' key={`${product.title}`}>
-                <p key={`${product.id}-${product.title}`}>{cartProducts.indexOf(product) + 1}</p>
-                <CartForCart key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images} />
-              </div>
-            ))
-          }
+          <div className="products__wrapper">
+            {cartProducts.length === 0 ?
+              <p>Products not found</p> :
+              cartProducts.slice(firstContentIndex, lastContentIndex).map((product) => (
+                <div className='cart-item' key={`${product.title}`}>
+                  <p key={`${product.id}-${product.title}`}>{cartProducts.indexOf(product) + 1}</p>
+                  <CartForCart key={product.id} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images} />
+                </div>
+              ))
+            }
+          </div>
         </div>
         {CardSummary()};
       </div>

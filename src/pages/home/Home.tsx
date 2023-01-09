@@ -83,7 +83,7 @@ export const Home = () => {
                 ? products.map(product =>
                     <ProductCard key={product.id} mode={returnDisplayModeStyle(displayMode)} amount={product.amount} id={product.id} title={product.title} description={product.description} price={product.price} discountPercentage={product.discountPercentage} rating={product.rating} stock={product.stock} brand={product.brand} category={product.category} thumbnail={product.thumbnail} images={product.images}></ProductCard>
                   )
-                : <p>Нет товаров по данным фильтрам</p>
+                : <p>Products not found</p>
             }
           </div>
         </div>
