@@ -6,13 +6,17 @@ import { addToCart, removeFromCart } from 'store/slices/cart.slice';
 
 import './cartForCart.css';
 
+// TODO: rename file to index.tsx
+
 export const CartForCart = (product: IProduct) => {
+  // TODO: use destructurization
 
   const dispatch = useAppDispatch();
 
   const addToCartHandler = (product: IProduct) => dispatch(addToCart(product));
   const handleRemoveFromCart = (productId: number) => dispatch(removeFromCart(productId));
   
+  // TODO: break to small components
   return (
     <div className='product__item item-for-cart'>
       <div className='product__item-img'>
