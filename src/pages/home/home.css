@@ -64,6 +64,10 @@
   gap: 30px;
 }
 
+.products__wrapper.column {
+  justify-content: flex-start;
+}
+
 .products__wrapper > p {
   width: 100%;
   font-family: 'Jost', sans-serif;
