@@ -63,3 +63,5 @@ export const ProductCard: React.FC<cartInterface> = ({id, thumbnail, title, cate
     </div>
   )
 }
+
+// TODO: move colors to consts
