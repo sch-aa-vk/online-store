@@ -19,7 +19,7 @@ export const Cart = () => {
 
   const lastContentIndex = page * contentPerPage;
   const firstContentIndex = page * contentPerPage - contentPerPage;
-  const maxPageNumber = Math.ceil(cartProducts.length / contentPerPage);
+  const maxPageNumber = Math.ceil(cartProducts.length / contentPerPage) || 1;
 
   useEffect(() => {
     if (page > maxPageNumber) {
