@@ -59,7 +59,7 @@ export const Home = () => {
   }, []);
 
   const [searchParams] = useSearchParams(); 
-  const params = ['brands', 'categories', 'display', 'price', 'search', 'stock'];
+  const params = ['brands', 'categories', 'display', 'price', 'search', 'stock', 'sort'];
   const keys = Array.from(searchParams.keys());
 
   function compare(a1: Array<string>, a2: Array<string>) {
