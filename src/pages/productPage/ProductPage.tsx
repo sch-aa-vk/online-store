@@ -93,6 +93,7 @@ export const ProductPage = ({id}: IProduct) => {
   )
 }
 
+// TODO: use useRef instead
 function changeImg(item: string) {
   const block = document.querySelector('.big-img') as Element;
   block.innerHTML = `<img src=${item} alt='' />`;
