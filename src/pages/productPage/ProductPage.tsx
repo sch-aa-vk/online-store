@@ -1,29 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Header } from 'components/header/Header'; 
 import { IProduct } from 'store/interface/IProduct'; 
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 import { addToCart, deleteFromCart, getCartProducts } from 'store/slices/cart.slice';
 import { initialState } from 'store/database/products';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { resetFilters } from 'store/slices/filters.slice';
 
 import './productPage.css';
 import cart from 'assets/add-to-cart.svg';
 
-export const ProductPage = ({id}: IProduct) => {
+export const ProductPage = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    if (Array.from(searchParams.keys()).length) {
-      navigate('/page404');
-    }
-  })
+  const { productId } = useParams();
 
   const cartProducts = useAppSelector(getCartProducts);
-  const product = initialState[id - 1];
+  const product = initialState[+productId! - 1];
   const productInCard = cartProducts.find((item) => item.id === product.id);
   const imagesBlocks = product.images.map((item) => 
     <div className='product__item-img item-img-description small-img' key={item} onClick={() => changeImg(item)}>

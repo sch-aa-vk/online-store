@@ -9,7 +9,6 @@ import { ProductPage } from 'pages/productPage/ProductPage';
 import { Page404 } from 'pages/page404/Page404';
 
 import './app.css';
-import { initialState } from 'store/database/products';
 
 export const App = () => {
   return (
@@ -17,9 +16,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
-        {initialState.map(item => (
-          <Route key={item.id} path={`/products/${item.id}`} element={<ProductPage id={item.id} title={''} description={''} price={0} discountPercentage={0} rating={0} stock={0} brand={''} category={''} thumbnail={''} images={[]} amount={0}/>} />
-        ))}
+        <Route path="/products/:productId" element={<ProductPage />} />
         <Route path='*' element={<Page404 />} />
       </Routes>
     </Provider>

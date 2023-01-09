@@ -102,14 +102,6 @@ function CardSummary() {
     navigate(`?${queryParams.toString()}`, {replace: isModalVisible});
   }, [isModalVisible]);
 
-  const keys = Array.from(searchParams.keys());
-
-  useEffect(() => {
-    if (keys.find((item) => item !== 'form')) {
-      navigate('/page404');
-    }
-  })
-
   useEffect(() => {
     switch (value) {
       case('TA'):
