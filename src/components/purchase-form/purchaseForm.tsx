@@ -21,12 +21,12 @@ interface Props {
 };
 
 function identifyCreditCard(card: string) {
-    if (card[0] === '4' && card.length === 19) {
+    if (card[0] === '4' && card.length <= 16) {
         return 'Visa';
-    } else if (card[0] === '5' && card.length === 16) {
+    } else if (card[0] === '5' && card.length <= 16) {
         return 'Mastercard';
-    } else if (card[0] === '3' && card.length === 15) {
-        return 'American Express';
+    } else if (card[0] === '3' && card.length <= 16) {
+        return 'JCB';
     }
     return '';
 }
@@ -122,7 +122,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
         }, 3000);
       },
     });
-  
+
     return (
       <div className='purchase-form__wrapper' onClick={() => onSetModalVisibility(false)}>
         <div className='purchase-form' onClick={(e) => e.stopPropagation()}>
