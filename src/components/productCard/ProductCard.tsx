@@ -9,6 +9,8 @@ import './productCard.css';
 import cart from 'assets/add-to-cart.svg';
 import { initialState } from 'store/database/products';
 
+// TODO: move to interface folder and change name
+
 type cartInterface = {
   id: number,
   thumbnail: string,
