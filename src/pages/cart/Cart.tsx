@@ -22,22 +22,10 @@ export const Cart = () => {
   const maxPageNumber = Math.ceil(cartProducts.length / contentPerPage);
 
   useEffect(() => {
-    if (JSON.parse(localStorage['contentPerPage']) > maxPageNumber && maxPageNumber >= 1) {
+    if (page > maxPageNumber) {
       setPage(maxPageNumber);
     }
-    if (JSON.parse(localStorage['page']) > maxPageNumber && maxPageNumber >= 1) {
-      setPage(maxPageNumber);
-    }
-  })
-
-  useEffect(() => {
-    if (JSON.parse(localStorage['page']) > maxPageNumber && maxPageNumber >= 1) {
-      setPage(maxPageNumber);
-    }
-    if (JSON.parse(localStorage['contentPerPage']) > maxPageNumber && maxPageNumber >= 1) {
-      setPage(maxPageNumber);
-    }
-  }, []);
+  }, [page, maxPageNumber])
 
   return (
     <>
