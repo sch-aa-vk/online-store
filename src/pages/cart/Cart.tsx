@@ -70,6 +70,7 @@ export const Cart = () => {
   )
 }
 
+// TODO: use arrow function instead
 function CardSummary() {
 
   const cartProducts = useAppSelector(getCartProducts);
