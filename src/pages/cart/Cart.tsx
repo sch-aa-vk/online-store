@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppSelector } from 'store/store.hooks'; 
 import { getCartProducts, getTotalPrice } from 'store/slices/cart.slice';
-import { Header } from 'components/header/Header'; 
 import { PurchaseForm } from 'components/purchase-form/purchaseForm';
 import { CartForCart } from 'components/cardForCart/CartForCart';
 
 import './cart.css';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 export const Cart = () => {
 
@@ -26,6 +25,28 @@ export const Cart = () => {
       setPage(maxPageNumber);
     }
   }, [page, maxPageNumber])
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    queryParams.delete('limit');
+    queryParams.append('limit', `${contentPerPage}`);
+    navigate(`?${queryParams.toString()}`, {replace: true});
+  }, [contentPerPage]);
+
+  useEffect(() => {
+    queryParams.delete('page');
+    queryParams.append('page', `${page}`);
+    navigate(`?${queryParams.toString()}`, {replace: true});
+  }, [page]);
+
+  useEffect(() => {
+    if (cartProducts.length === 0) {
+      innerHTMl();
+    }
+  }, [cartProducts])
 
   return (
     <>
@@ -53,7 +74,7 @@ export const Cart = () => {
             }
           </div>
         </div>
-        {CardSummary()};
+        <CardSummary/>
       </div>
     </>
   )
@@ -146,4 +167,9 @@ function CardSummary() {
       {isModalVisible && <PurchaseForm onSetModalVisibility={setModalVisibility}></PurchaseForm>}
     </>
   )
+}
+
+function innerHTMl() {
+  const cart = document.querySelector('.cart')!;
+  cart.innerHTML = `<p>Products not found</p>`;
 }
