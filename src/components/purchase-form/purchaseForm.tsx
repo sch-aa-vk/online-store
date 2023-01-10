@@ -21,12 +21,13 @@ interface Props {
 };
 
 function identifyCreditCard(card: string) {
-    if (card[0] === '4' && card.length <= 16) {
-        return 'Visa';
-    } else if (card[0] === '5' && card.length <= 16) {
-        return 'Mastercard';
-    } else if (card[0] === '3' && card.length <= 16) {
-        return 'JCB';
+    if (card[0] === '4') {
+        // return 'Visa';
+        return 'https://blog.logomyway.com/wp-content/uploads/2022/02/visa-logo-2.jpg';
+    } else if (card[0] === '5') {
+        return 'https://imageio.forbes.com/blogs-images/steveolenski/files/2016/07/Mastercard_new_logo-1200x865.jpg?format=jpg&width=960';
+    } else if (card[0] === '3') {
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/JCB_logo.svg/2560px-JCB_logo.svg.png';
     }
     return '';
 }
@@ -98,8 +99,8 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
         email: Yup.string().email('Invalid email address').required('*required'),
         cardNumber: Yup.string()
           .matches(/\d/, 'Contains non-numeric character')
-          .min(15, 'Minimum of 15')
-          .max(19, 'Maximum of 19')
+          .min(16, 'Minimum of 16')
+          .max(16, 'Maximum of 16')
           .required('*required'),
         cardExpiryDate: Yup.string()
           .matches(/^(0[1-9]|1[0-2])/, 'Month must fit to template 01-12')
@@ -190,7 +191,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                 </div>
 
                 <div>
-                <label htmlFor="favoritePlace">Card Number ({identifyCreditCard(card)}):</label>
+                <label htmlFor="favoritePlace">Card Number (<img className='card-logo-img' src={`${identifyCreditCard(card)}`}></img>):</label>
                 <input
                     type="text"
                     name="cardNumber"
