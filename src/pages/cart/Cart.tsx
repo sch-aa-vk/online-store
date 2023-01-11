@@ -10,10 +10,13 @@ import './cart.css';
 export const Cart = () => {
 
   const cartProducts = useAppSelector(getCartProducts);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const navigate = useNavigate();
 
-  const [page, setPage] = useState(localStorage['page'] ? JSON.parse(localStorage['page']) : 1);
+  const [page, setPage] = useState(localStorage['page'] ? +queryParams.get('page')! || JSON.parse(localStorage['page']) : 1);
   localStorage['page'] = JSON.stringify(page);
-  const [contentPerPage, setContentPerPage] = useState(localStorage['contentPerPage'] ? JSON.parse(localStorage['contentPerPage']) : 3);
+  const [contentPerPage, setContentPerPage] = useState(localStorage['contentPerPage'] ? +queryParams.get('limit')! || JSON.parse(localStorage['contentPerPage']) : 3);
   localStorage['contentPerPage'] = JSON.stringify(contentPerPage);
 
   const lastContentIndex = page * contentPerPage;
@@ -25,10 +28,6 @@ export const Cart = () => {
       setPage(maxPageNumber);
     }
   }, [page, maxPageNumber])
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const navigate = useNavigate();
 
   useEffect(() => {
     queryParams.delete('limit');

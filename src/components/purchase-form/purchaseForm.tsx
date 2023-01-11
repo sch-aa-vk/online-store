@@ -22,7 +22,6 @@ interface Props {
 
 function identifyCreditCard(card: string) {
     if (card[0] === '4') {
-        // return 'Visa';
         return 'https://blog.logomyway.com/wp-content/uploads/2022/02/visa-logo-2.jpg';
     } else if (card[0] === '5') {
         return 'https://imageio.forbes.com/blogs-images/steveolenski/files/2016/07/Mastercard_new_logo-1200x865.jpg?format=jpg&width=960';
@@ -195,7 +194,7 @@ export function PurchaseForm({onSetModalVisibility}: Props) {
                 <input
                     type="text"
                     name="cardNumber"
-                    onKeyDown={(e) => keyDownHandler(e, 19)}
+                    onKeyDown={(e) => keyDownHandler(e, 16)}
                     onInput={(e) => {setCard((e.target as HTMLInputElement).value)}}
                     onChange={handleChange}
                     onBlur={handleBlur}
