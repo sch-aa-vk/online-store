@@ -41,7 +41,6 @@ export const ProductPage = () => {
   }
 
   const changeImg = (item: string) => {
-    // const block = document.querySelector('.big-img') as Element;
     image.current!.innerHTML = `<img src=${item} alt='' />`;
     console.log(image.current);
   };
