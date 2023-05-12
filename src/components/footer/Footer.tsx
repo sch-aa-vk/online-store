@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import github from 'assets/github.svg';
 import rsschool from 'assets/rsschool.svg';
 import './Footer.css';
@@ -12,7 +10,10 @@ export const Footer: React.FC = () => {
         <img className='footer-img' src={rsschool} alt="" />
       </a>
       <p>online store 2022</p>
-      <a href='https://github.com/cascadetile/online-store/tree/exp-branch'><img className='footer-img' src={github} alt="github logo" /></a>
+      <div className="footer-links">
+        <a href='https://github.com/cascadetile' className='footer-link'><img className='footer-img' src={github} alt="github logo" />cascadetile</a>
+        <a href='https://github.com/sch-aa-vk' className='footer-link'><img className='footer-img' src={github} alt="github logo" />sch-aa-vk</a>
+      </div>
     </footer>
   )
 }

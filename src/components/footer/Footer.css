@@ -31,3 +31,18 @@
 .footer-img {
   height: 40px;
 }
+
+.footer-links {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-link {
+  width: max-content;
+  display: flex;
+  flex-flow: column wrap;
+  font-family: 'Jaldi', sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  color: #000000;
+}
