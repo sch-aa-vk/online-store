@@ -1,6 +1,9 @@
 .error {
   width: 100vw;
-  height: calc(100vh - 182px);
+  height: max-content;
+  min-height: calc(100vh - 182px);
+  padding: 40px 0;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
