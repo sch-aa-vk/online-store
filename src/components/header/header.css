@@ -1,14 +1,23 @@
 .header {
-  width: 100%;
   height: 101px;
+  padding: 0 20px;
   background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+@media screen and (max-width: 480px) {
+  .header {
+    height: max-content;
+    padding: 10px 0;
+    flex-flow: column wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
 .store-link {
-  margin-left: 31px;
   display: flex;
   gap: 12px;
   text-decoration: none;
@@ -39,7 +48,6 @@
   height: 58px;
   background: #db1e02;
   padding: 0 30px;
-  margin-right: 50px;
   border: none;
   border-radius: 12px;
   display: flex;

@@ -9,11 +9,23 @@
   align-items: center;
 }
 
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 10px 2rem;
+    height: max-content;
+    flex-flow: column wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
 .footer > p {
   font-family: 'Jaldi', sans-serif;
   font-weight: 400;
   font-size: 2rem;
+  line-height: 100%;
   color: black;
+  text-align: center;
 }
 
 .footer-img {
