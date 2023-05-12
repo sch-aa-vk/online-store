@@ -4,7 +4,7 @@
 
 This project was written by a team of two people as part of a course from the Rolling Stones School in the second stage. We have written an online store using React, Typescript and Redux Toolkit.
 
-**Features: **
+### Features:
 - the ability to select an item in the cart
 - dynamic change of products in the basket
 - filtering by name, brand, product type, stock availability and price range
