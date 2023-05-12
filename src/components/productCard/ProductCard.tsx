@@ -6,8 +6,8 @@ import { addToCart, deleteFromCart, getCartProducts } from 'store/slices/cart.sl
 
 import './productCard.css';
 
-import cart from 'assets/add-to-cart.svg';
 import { initialState } from 'store/database/products';
+import { AddToCartIcon } from 'assets/add-to-cart';
 
 // TODO: move to interface folder and change name
 
@@ -58,7 +58,7 @@ export const ProductCard: React.FC<cartInterface> = ({id, thumbnail, title, cate
         <p>Stock: <span>{stock}</span></p>
       </div>
       <button className={`product__item-cart ${mode}`} onClick={() => addToCartHandler(product)} style={{background: `${productInCard ? '#9e9492' : '#db1e02'}`}}>
-        <img src={cart} alt="cart"/>{mode === 'column' ? <p>${price}</p> : <></>}
+        <AddToCartIcon />{mode === 'column' ? <p>${price}</p> : <></>}
       </button>
     </div>
   )

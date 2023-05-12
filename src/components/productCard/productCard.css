@@ -1,23 +1,23 @@
 .product__item {
   position: relative;
-  height: 15vw;
-  /* width: 27vw; */
   padding: 0 1rem;
   background: #FFFFFF;
   border-radius: 13px;
   display: flex;
   align-items: center;
   gap: 1rem;
+  transition: all 0.2s linear;
 }
 
 .product__item.row {
   position: relative;
-  height: 15vw;
-  width: 27vw;
-  padding: 0 1rem;
+  height: max-content;
+  width: 260px;
+  padding: 10px;
   background: #FFFFFF;
   border-radius: 13px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: 1rem;
 }
@@ -25,7 +25,7 @@
 .product__item.column {
   position: relative;
   height: max-content;
-  width: 12vw;
+  width: 220px;
   padding: 1rem;
   background: #FFFFFF;
   border-radius: 13px;
@@ -37,8 +37,8 @@
 
 .product__item-img {
   order: 0;
-  width: 12vw;
-  height: 12vw;
+  width: 220px;
+  height: 220px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   display: flex;
@@ -47,10 +47,17 @@
   cursor: pointer;
 }
 
+.product__item.row > .product__item-img {
+  margin-top: 20px;
+  align-self: flex-start;
+  max-width: 100px;
+  height: 100px;
+}
+
 .product__item-link,
 .product__item-link > img {
-  max-width: 12vw;
-  max-height: 12vw;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .product__item-description {
@@ -73,7 +80,7 @@
 }
 
 .product__item-description > h2 {
-  max-width: 14vw;
+  max-width: 220px;
   font-family: 'Jost', sans-serif;
   font-weight: 300;
   font-size: 1.5rem;
@@ -106,6 +113,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.product__item-description.row > h2 {
+  max-width: 150px;
 }
 
 .product__item-description.column > p {
@@ -119,7 +131,7 @@
 .product__item-cart.row {
   position: absolute;
   bottom: 1rem;
-  right: 1rem;
+  left: 45px;
   width: 40px;
   height: 40px;
   border: none;
@@ -156,4 +168,8 @@
 .product__item-cart > img {
   width: 32px;
   height: 32px;
+}
+
+.product__item:hover {
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
 }

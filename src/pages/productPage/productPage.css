@@ -5,6 +5,9 @@
 
 .breadcrumps {
   margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .breadcrumps > span {
@@ -14,6 +17,7 @@
 }
 
 .breadcrumps-link {
+  display: inline-block;
   position: relative;
   width: max-content;
   height: max-content;
@@ -42,15 +46,49 @@
 }
 
 .item-description {
-  width: 92vw;
-  height: 450px;
+  width: 100%;
+  box-sizing: border-box;
+  height: max-content;
   padding: 2rem;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   gap: 2rem;
 }
 
+@media screen and (max-width: 880px) {
+  .item-description {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .item-description > .buttons-container {
+    grid-column: 1 / 3;
+    width: 100%;
+    flex-flow: row wrap;
+    justify-content: end;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .item-description {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .item-description > .buttons-container {
+    grid-column: 1 / 2;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .item-description {
+    padding: 20px 10px;
+  }
+}
+
 .img-description {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
   max-width: 300px;
 }
 
@@ -75,8 +113,8 @@
 }
 
 .item-img-description > img {
-  max-width: 280px;
-  max-height: 280px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .item-img-description.small-img > img {
@@ -130,4 +168,11 @@
 .cart-description > img {
   width: 48px;
   height: 48px;
+}
+
+@media screen and (max-width: 440px) {
+  .item-img-description {
+    max-width: 240px;
+    max-height: 240px;
+  }
 }
