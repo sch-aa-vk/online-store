@@ -1,5 +1,3 @@
-import React from 'react';
-import { Header } from 'components/header/Header'; 
 import { IProduct } from 'store/interface/IProduct'; 
 import { useAppDispatch, useAppSelector } from 'store/store.hooks';
 import { addToCart, deleteFromCart, getCartProducts } from 'store/slices/cart.slice';
@@ -8,13 +6,15 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { resetFilters } from 'store/slices/filters.slice';
 
 import './productPage.css';
-import cart from 'assets/add-to-cart.svg';
+import { AddToCartIcon } from 'assets/add-to-cart';
+import { useRef } from 'react';
 
 export const ProductPage = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { productId } = useParams();
+  const image = useRef<HTMLDivElement>(null);
 
   const cartProducts = useAppSelector(getCartProducts);
   const product = initialState[+productId! - 1];
@@ -40,6 +40,12 @@ export const ProductPage = () => {
     navigate('/cart?form=true');
   }
 
+  const changeImg = (item: string) => {
+    // const block = document.querySelector('.big-img') as Element;
+    image.current!.innerHTML = `<img src=${item} alt='' />`;
+    console.log(image.current);
+  };
+
   return(
     <>
       <div className='product_page'>
@@ -54,7 +60,7 @@ export const ProductPage = () => {
         </div>
         <div className='product__item item-description'>
           <div className='img-description'>
-            <div className='product__item-img item-img-description big-img'>
+            <div className='product__item-img item-img-description big-img' ref={image}>
               <img src={product.thumbnail} alt="" />
             </div>
             <div className='small-img-collection'>
@@ -77,17 +83,11 @@ export const ProductPage = () => {
             </button>
             <button className='product__item-cart cart-description' onClick={() => addToCartHandler(product)} style={{background: `${productInCard ? '#9e9492' : '#db1e02'}`}}>
               <p>{productInCard ? 'Remove From Cart' : 'Add To Cart'}</p>
-              <img src={cart} alt="cart"/>
+              <AddToCartIcon />
             </button>
           </div>
         </div>
       </div>
     </>
   )
-}
-
-// TODO: use useRef instead
-function changeImg(item: string) {
-  const block = document.querySelector('.big-img') as Element;
-  block.innerHTML = `<img src=${item} alt='' />`;
 }

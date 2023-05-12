@@ -13,9 +13,22 @@
 .purchase-form {
     width: 400px;
     height: max-content;
+    max-height: 95vh;
     border-radius: 5px;
     padding: 2rem;
     background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 420px) {
+    .purchase-form__wrapper {
+        padding: 0 10px;
+    }
+
+    .purchase-form {
+        max-width: 400px;
+    }
 }
 
 .purchase-form div {
