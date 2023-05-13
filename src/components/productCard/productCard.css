@@ -56,13 +56,14 @@
 
 .product__item-link,
 .product__item-link > img {
-  max-width: 100%;
   max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .product__item-description {
   order: 0;
-  max-width: 100%;
+  max-width: 90%;
   display: flex;
   flex-flow: column wrap;
   gap: 5px;
